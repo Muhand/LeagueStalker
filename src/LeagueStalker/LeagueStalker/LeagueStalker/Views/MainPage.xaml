@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LeagueStalker"
+             xmlns:CustomControls="clr-namespace:LeagueStalker.CustomControls"
+             xmlns:CustomBehaviors="clr-namespace:LeagueStalker.Behaviors"
+             xmlns:Converters="clr-namespace:LeagueStalker.Converters"
+             x:Class="LeagueStalker.MainPage" BackgroundColor="{StaticResource MainBackgroundColor}"
+             Padding="0,40,0,0">
+    
+    <ContentPage.Content>
+        <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="32,0,32,0">
+            
+            <!--Seperate Logo from the rest of the content-->
+            <StackLayout Spacing="40" Orientation="Vertical">
+                <!--Logo-->
+                <StackLayout Spacing="1" Orientation="Vertical">
+                    <Label Text="{StaticResource MainName-1}" TextColor="{StaticResource ThemeColor}" 
+                           FontFamily="Segoe UI" FontSize="44" HorizontalTextAlignment="Center"/>
+                    
+                    <Label Text="{StaticResource MainName-2}" TextColor="{StaticResource ThemeColor}"
+                           FontFamily="Segoe UI" FontSize="55" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+                
+                <!--Rest of the content-->
+                <StackLayout Orientation="Vertical" Spacing="75">
+                    <!--Login Form-->
+                    <StackLayout Orientation="Vertical" Spacing="20">
+
+                        <CustomControls:ExtendedEntry Placeholder="Email" TextColor="{StaticResource ThemeColor}"
+                               BackgroundColor="{StaticResource EntryBackgroundColor}" BorderColor="{StaticResource DisabledColor}" BorderRadius="0" BorderWidth="1"
+                               FontSize="20" FontFamily="Sagoe UI" HorizontalTextAlignment="Start"
+                               HorizontalOptions="FillAndExpand" HeightRequest="50" LeftPadding="20" ReturnKeyType="Go" EnableDoneToolBar="True">
+                            <CustomControls:ExtendedEntry.Behaviors>
+                                <CustomBehaviors:ExtendedEntryFocusedOrLostFocus/>
+                                <CustomBehaviors:EmailValidator x:Name="emailValidator"/>
+                            </CustomControls:ExtendedEntry.Behaviors>
+                        </CustomControls:ExtendedEntry>
+
+                        <CustomControls:ExtendedEntry Placeholder="Password" IsPassword="True" TextColor="{StaticResource ThemeColor}"
+                               BackgroundColor="{StaticResource EntryBackgroundColor}" BorderColor="{StaticResource DisabledColor}" BorderRadius="0" BorderWidth="1"
+                               FontSize="20" FontFamily="Sagoe UI" HorizontalTextAlignment="Start"
+                               HorizontalOptions="FillAndExpand" HeightRequest="50" LeftPadding="20" ReturnKeyType="Go" EnableDoneToolBar="True">
+                            <CustomControls:ExtendedEntry.Behaviors>
+                                <CustomBehaviors:ExtendedEntryFocusedOrLostFocus/>
+                            </CustomControls:ExtendedEntry.Behaviors>
+                        </CustomControls:ExtendedEntry>
+
+                        <CustomControls:Checkbox BorderRadius="0" BorderWidth="1" BorderColor="{StaticResource ThemeColor}"
+                                                 BackgroundColor="{StaticResource EntryBackgroundColor}" Text="Remember me"/>
+
+                    </StackLayout>
+
+                    <!--Buttons-->
+                    <StackLayout Orientation="Vertical" Spacing="14">
+                        <StackLayout Orientation="Vertical" Spacing="7">
+                            <Button x:Name="loginBtn" Text="LOGIN" BackgroundColor="Transparent" TextColor="{StaticResource ThemeColor}" 
+                                IsEnabled="{Binding Source={x:Reference emailValidator},Path=IsValid}"
+                                BorderWidth="1" BorderRadius="0" BorderColor="{Binding Source={x:Reference emailValidator},Path=IsValid, Converter={Converters:LoginButtonEnableDisable}}"
+                                FontFamily="Sagoe UI" FontSize="32"
+                                HorizontalOptions="FillAndExpand">
+                            </Button>
+
+                            <Button Text="SIGN UP" BackgroundColor="Transparent" TextColor="{StaticResource ThemeColor}" 
+                                BorderColor="{StaticResource ThemeColor}" BorderWidth="1" BorderRadius="0" 
+                                FontFamily="Sagoe UI" FontSize="32"
+                                HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label Text="Forgot password?" TextColor="{StaticResource DisabledColor}"
+                               FontSize="20" FontFamily="Sagoe UI" 
+                               HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,12 @@
+{
+    "profileIconId": 3006,
+    "name": "WarDesigner",
+    "summonerLevel": 30,
+    "accountId": 220167353,
+    "id": 59219772,
+    "revisionDate": 1508884373000
+}
+
+https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/220167353?api_key=RGAPI-703a9b98-fbe8-4129-917c-ec1ff5e1960d
+
+https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/WarDesigner/RiotSchmick?api_key=RGAPI-703a9b98-fbe8-4129-917c-ec1ff5e1960d
