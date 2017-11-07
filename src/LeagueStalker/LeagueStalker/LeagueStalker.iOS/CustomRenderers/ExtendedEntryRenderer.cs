@@ -33,17 +33,11 @@ namespace LeagueStalker.iOS.CustomRenderers
             UpdateLeftPadding();
             UpdateRightPadding();
             UpdateShowDoneToolBarInKeyboard();
+            UpdateAutoCapitalization();
+            UpdateAutoCorrection();
+            UpdateSpellChecking();
+
             Control.ClipsToBounds = true;
-
-            //Turn off auto capitalization
-            Control.AutocapitalizationType = UITextAutocapitalizationType.None;
-
-            //Turn off autocorrection
-            Control.AutocorrectionType = UITextAutocorrectionType.No;
-
-            //Turn off autospelling 
-            Control.SpellCheckingType = UITextSpellCheckingType.No;
-
         }
 
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -79,6 +73,18 @@ namespace LeagueStalker.iOS.CustomRenderers
             else if(e.PropertyName == ExtendedEntry.EnableDoneToolBarProperty.PropertyName)
             {
                 UpdateShowDoneToolBarInKeyboard();
+            }
+            else if(e.PropertyName == ExtendedEntry.AutoCapitalizeProperty.PropertyName)
+            {
+                UpdateAutoCapitalization();
+            }
+            else if(e.PropertyName == ExtendedEntry.AutoCorrectProperty.PropertyName)
+            {
+                UpdateAutoCorrection();
+            }
+            else if (e.PropertyName == ExtendedEntry.SpellCheckingProperty.PropertyName)
+            {
+                UpdateSpellChecking();
             }
         }
 
@@ -129,6 +135,69 @@ namespace LeagueStalker.iOS.CustomRenderers
             };
             
             this.Control.InputAccessoryView = toolbar;
+        }
+
+        private void UpdateAutoCapitalization()
+        {
+            var exEntry = this.Element as ExtendedEntry;
+
+            switch (exEntry.AutoCapitalize)
+            {
+                case AutoCapitalizationType.None:
+                    Control.AutocapitalizationType = UITextAutocapitalizationType.None;
+                    break;
+                case AutoCapitalizationType.AllCharacters:
+                    Control.AutocapitalizationType = UITextAutocapitalizationType.AllCharacters;
+                    break;
+                case AutoCapitalizationType.Sentences:
+                    Control.AutocapitalizationType = UITextAutocapitalizationType.Sentences;
+                    break;
+                case AutoCapitalizationType.Words:
+                    Control.AutocapitalizationType = UITextAutocapitalizationType.Words;
+                    break;
+                default:
+                    throw new Exception("Unknown Type");
+            }
+        }
+
+        private void UpdateAutoCorrection()
+        {
+            var exEntry = this.Element as ExtendedEntry;
+
+            switch (exEntry.AutoCorrect)
+            {
+                case AutoCorrectionType.No:
+                    Control.AutocorrectionType = UITextAutocorrectionType.No;
+                    break;
+                case AutoCorrectionType.Yes:
+                    Control.AutocorrectionType = UITextAutocorrectionType.Yes;
+                    break;
+                case AutoCorrectionType.Default:
+                    Control.AutocorrectionType = UITextAutocorrectionType.Default;
+                    break;
+                default:
+                    throw new Exception("Unknown Type");
+            }
+        }
+
+        private void UpdateSpellChecking()
+        {
+            var exEntry = this.Element as ExtendedEntry;
+
+            switch (exEntry.SpellChecking)
+            {
+                case AutoSpellCheckingType.No:
+                    Control.SpellCheckingType = UITextSpellCheckingType.No;
+                    break;
+                case AutoSpellCheckingType.Yes:
+                    Control.SpellCheckingType = UITextSpellCheckingType.Yes;
+                    break;
+                case AutoSpellCheckingType.Default:
+                    Control.SpellCheckingType = UITextSpellCheckingType.Default;
+                    break;
+                default:
+                    throw new Exception("Unknown Type");
+            }
         }
 
         #endregion

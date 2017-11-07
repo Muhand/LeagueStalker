@@ -49,6 +49,8 @@ namespace LeagueStalker.Droid.CustomRenderers
             UpdateBackground(entryEx);
             UpdatePadding(entryEx);
             UpdateTextAlighnment(entryEx);
+            
+
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)

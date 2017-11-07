@@ -29,7 +29,12 @@ namespace LeagueStalker.Behaviors
 
         void HandleTextChanged(object sender, TextChangedEventArgs e)
         {
+            var temp = (ExtendedEntry)sender;
             IsValid = (Regex.IsMatch(e.NewTextValue, emailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+            if (!IsValid)
+                temp.BorderColor = (Color)Application.Current.Resources["NotValidEntry"];
+            else
+                temp.BorderColor = (Color)Application.Current.Resources["ThemeColor"];
             //((ExtendedEntry)sender).TextColor = IsValid ? Color.Default : Color.Red;
         }
 

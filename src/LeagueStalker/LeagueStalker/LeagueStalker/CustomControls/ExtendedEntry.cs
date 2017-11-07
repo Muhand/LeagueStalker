@@ -91,6 +91,42 @@ namespace LeagueStalker.CustomControls
             set { SetValue(EnableDoneToolBarProperty, value); }
         }
 
+        public static readonly BindableProperty AutoCapitalizeProperty = BindableProperty.Create(
+            propertyName: "AutoCapitalize",
+            returnType: typeof(AutoCapitalizationType),
+            declaringType: typeof(ExtendedEntry),
+            defaultValue: AutoCapitalizationType.Words);
+
+        public AutoCapitalizationType AutoCapitalize
+        {
+            get { return (AutoCapitalizationType)GetValue(AutoCapitalizeProperty); }
+            set { SetValue(AutoCapitalizeProperty, value); }
+        }
+
+        public static readonly BindableProperty AutoCorrectProperty = BindableProperty.Create(
+            propertyName: "AutoCorrect",
+            returnType: typeof(AutoCorrectionType),
+            declaringType: typeof(ExtendedEntry),
+            defaultValue: AutoCorrectionType.Default);
+
+        public AutoCorrectionType AutoCorrect
+        {
+            get { return (AutoCorrectionType)GetValue(AutoCorrectProperty); }
+            set { SetValue(AutoCorrectProperty, value); }
+        }
+
+        public static readonly BindableProperty SpellCheckingProperty = BindableProperty.Create(
+            propertyName: "SpellChecking",
+            returnType: typeof(AutoSpellCheckingType),
+            declaringType: typeof(ExtendedEntry),
+            defaultValue: AutoSpellCheckingType.Default);
+
+        public AutoSpellCheckingType SpellChecking
+        {
+            get { return (AutoSpellCheckingType)GetValue(SpellCheckingProperty); }
+            set { SetValue(SpellCheckingProperty, value); }
+        }
+
         //public static readonly BindableProperty TopPaddingProperty = BindableProperty.Create(
         //    propertyName: "TopPadding",
         //    returnType: typeof(double),
@@ -132,4 +168,25 @@ namespace LeagueStalker.CustomControls
         EmergencyCall,
         Continue
     }
+
+    public enum AutoCapitalizationType : int
+    {
+        None,
+        AllCharacters,
+        Sentences,
+        Words
+    }
+    public enum AutoCorrectionType : int
+    {
+        No,
+        Yes,
+        Default
+    }
+    public enum AutoSpellCheckingType : int
+    {
+        No,
+        Yes,
+        Default
+    }
+
 }

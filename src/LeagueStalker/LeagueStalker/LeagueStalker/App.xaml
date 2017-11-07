@@ -13,6 +13,8 @@
             <Color x:Key="ThemeColor">#CE9340</Color>
             <Color x:Key="DisabledColor">#95989A</Color>
             <Color x:Key="EntryBackgroundColor">#0D161F</Color>
+            <Color x:Key="NotValidEntry">#ff0000</Color>
+            <Color x:Key="MainTabBackgroundColor">#010A13</Color>
         </ResourceDictionary>
 
     </Application.Resources>

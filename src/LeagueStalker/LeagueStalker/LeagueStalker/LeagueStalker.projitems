@@ -15,15 +15,101 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\CheckboxState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\EmailValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ExtendedEntryFocusedOrLostFocus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\PasswordValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SignupButtonValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SummonerNameValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LoginButtonEnableDisable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SignupButtonEnableDisable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\Checkbox.xaml.cs">
       <DependentUpon>Checkbox.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CurrentMatch.xaml.cs">
+      <DependentUpon>CurrentMatch.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PlayerView.xaml.cs">
+      <DependentUpon>PlayerView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Exist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\GameMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\GameType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\LoadUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Login.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PasswordReset.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PlatformId.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Register.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ResendConfirmation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DatabaseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\Implementation\RestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NewUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SummonerInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\Exist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LoadUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\Login.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\BannedChampion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Champion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Mastery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Participant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Rune.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Spell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\PasswordReset.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\Register.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\ResendConfirmation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HistoryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HomeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProcessLoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Signup\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Signup\ProcessSignupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Signup\ValidatingSummonerNameViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\History.xaml.cs">
+      <DependentUpon>History.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProcessLogin.xaml.cs">
+      <DependentUpon>ProcessLogin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Signup\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Signup\ProcessSignup.xaml.cs">
+      <DependentUpon>ProcessSignup.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Signup\ValidatingSummonerName.xaml.cs">
+      <DependentUpon>ValidatingSummonerName.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -37,10 +123,67 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\Checkbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\Checkbox.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Signup\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Signup\ValidatingSummonerName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Signup\ProcessSignup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ProcessLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Dashboard\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Dashboard\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Dashboard\History.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Dashboard\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\CurrentMatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\PlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeagueStalker.Views.Dashboard.Home"
+             xmlns:CustomControls="clr-namespace:LeagueStalker.CustomControls"
+             xmlns:Converters="clr-namespace:LeagueStalker.Converters"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Padding="0,20,0,0">
+    
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--Email not confirmed-->
+            <Grid HeightRequest="52" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Red" IsVisible="{Binding EmailIsConfirmed}">
+                <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" BackgroundColor="#FFCBCD" Margin="2,2,2,2" Padding="3,0,3,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="2">
+                        <Label Text="You have not yet confirmed your e-mail address." HorizontalOptions="Start" VerticalOptions="Center"
+                           TextColor="#B63F2C" FontFamily="Sagoe UI" FontAttributes="None"/>
+
+                        <Label Text="Resend activation?" HorizontalOptions="Start" VerticalOptions="Center"
+                           TextColor="#B63F2C" FontFamily="Sagoe UI" FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ResendConfirmationCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <!--<Label Text="X" HorizontalOptions="End" VerticalOptions="Center"/>-->
+                    </StackLayout>
+                </Grid>
+            </Grid>
+
+            <Grid x:Name="MainContentGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,0,0,0">
+                <Label Text="{Binding Status}" VerticalOptions="Center" HorizontalOptions="Center"
+                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontFamily="Sagoe UI"
+                       TextColor="{StaticResource DisabledColor}" FontAttributes="Italic" 
+                       IsVisible="{Binding IsPlaying, Converter={Converters:InverseBoolConverter}}"/>
+
+                <!--<CustomControls:CurrentMatch IsVisible="{Binding IsPlaying}" CurrentGame="{Binding CurrentGame}"/>-->
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

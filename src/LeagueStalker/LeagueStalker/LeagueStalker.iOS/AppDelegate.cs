@@ -4,7 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
-using MXControls;
+//using MXControls;
 namespace LeagueStalker.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 

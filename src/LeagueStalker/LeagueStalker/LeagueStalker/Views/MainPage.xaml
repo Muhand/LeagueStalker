@@ -27,20 +27,24 @@
                     <!--Login Form-->
                     <StackLayout Orientation="Vertical" Spacing="20">
 
-                        <CustomControls:ExtendedEntry Placeholder="Email" TextColor="{StaticResource ThemeColor}"
+                        <CustomControls:ExtendedEntry Text="{Binding Email, Mode=TwoWay}" Placeholder="Email" TextColor="{StaticResource ThemeColor}"
                                BackgroundColor="{StaticResource EntryBackgroundColor}" BorderColor="{StaticResource DisabledColor}" BorderRadius="0" BorderWidth="1"
                                FontSize="20" FontFamily="Sagoe UI" HorizontalTextAlignment="Start"
+                               SpellChecking="No" AutoCorrect="No" AutoCapitalize="None"
                                HorizontalOptions="FillAndExpand" HeightRequest="50" LeftPadding="20" ReturnKeyType="Go" EnableDoneToolBar="True">
+                            
                             <CustomControls:ExtendedEntry.Behaviors>
                                 <CustomBehaviors:ExtendedEntryFocusedOrLostFocus/>
                                 <CustomBehaviors:EmailValidator x:Name="emailValidator"/>
                             </CustomControls:ExtendedEntry.Behaviors>
                         </CustomControls:ExtendedEntry>
 
-                        <CustomControls:ExtendedEntry Placeholder="Password" IsPassword="True" TextColor="{StaticResource ThemeColor}"
+                        <CustomControls:ExtendedEntry Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True" TextColor="{StaticResource ThemeColor}"
                                BackgroundColor="{StaticResource EntryBackgroundColor}" BorderColor="{StaticResource DisabledColor}" BorderRadius="0" BorderWidth="1"
                                FontSize="20" FontFamily="Sagoe UI" HorizontalTextAlignment="Start"
+                               SpellChecking="No" AutoCorrect="No" AutoCapitalize="None"
                                HorizontalOptions="FillAndExpand" HeightRequest="50" LeftPadding="20" ReturnKeyType="Go" EnableDoneToolBar="True">
+                            
                             <CustomControls:ExtendedEntry.Behaviors>
                                 <CustomBehaviors:ExtendedEntryFocusedOrLostFocus/>
                             </CustomControls:ExtendedEntry.Behaviors>
@@ -55,6 +59,7 @@
                     <StackLayout Orientation="Vertical" Spacing="14">
                         <StackLayout Orientation="Vertical" Spacing="7">
                             <Button x:Name="loginBtn" Text="LOGIN" BackgroundColor="Transparent" TextColor="{StaticResource ThemeColor}" 
+                                Command="{Binding loginCommand}"
                                 IsEnabled="{Binding Source={x:Reference emailValidator},Path=IsValid}"
                                 BorderWidth="1" BorderRadius="0" BorderColor="{Binding Source={x:Reference emailValidator},Path=IsValid, Converter={Converters:LoginButtonEnableDisable}}"
                                 FontFamily="Sagoe UI" FontSize="32"
@@ -64,7 +69,7 @@
                             <Button Text="SIGN UP" BackgroundColor="Transparent" TextColor="{StaticResource ThemeColor}" 
                                 BorderColor="{StaticResource ThemeColor}" BorderWidth="1" BorderRadius="0" 
                                 FontFamily="Sagoe UI" FontSize="32"
-                                HorizontalOptions="FillAndExpand"/>
+                                HorizontalOptions="FillAndExpand" Command="{Binding signupCommand}"/>
                         </StackLayout>
 
                         <StackLayout>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeagueStalker.Views.Dashboard.Main"
+             xmlns:local="clr-namespace:LeagueStalker.Views.Dashboard" BarBackgroundColor="#010A13">
+
+    <local:History Title="History" Icon="History_32x32.png"/>
+    <local:Home Title="Home" Icon="home_32x32.png"/>
+    <local:Settings Title="Settings" Icon="Settings_32x32.png"/>
+
+
+    <!--<ContentPage Title="Home">
+        <ContentPage.Content>
+            
+        </ContentPage.Content>
+    </ContentPage>-->
+</TabbedPage>
