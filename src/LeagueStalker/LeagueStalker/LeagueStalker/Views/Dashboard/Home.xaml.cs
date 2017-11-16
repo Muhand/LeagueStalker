@@ -12,10 +12,11 @@ namespace LeagueStalker.Views.Dashboard
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Home : ContentPage
 	{
-		public Home ()
-		{
-			InitializeComponent ();
+        public Home()
+        {
+            InitializeComponent();
             BindingContext = new ViewModels.Dashboard.HomeViewModel(ref MainContentGrid);
-		}
-	}
+        }
+
+    }
 }

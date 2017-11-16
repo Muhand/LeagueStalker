@@ -104,6 +104,11 @@ namespace LeagueStalker.ViewModels.Dashboard
         #region Constructor(s)
         public HomeViewModel(ref Grid g)
         {
+            init(ref g);
+        }
+
+        public void init(ref Grid g)
+        {
             //If email is not confirmed then show the header
             this.EmailIsConfirmed = !Globals.CurrentUser.Confirmed;
 
@@ -126,6 +131,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 matchView.IsVisible = IsPlaying;
             }
         }
+
         #endregion
 
         #region Utility Methods

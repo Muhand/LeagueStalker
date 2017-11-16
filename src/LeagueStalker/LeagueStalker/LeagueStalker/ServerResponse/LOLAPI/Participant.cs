@@ -17,16 +17,20 @@ namespace LeagueStalker.ServerResponse.LOLAPI
         public List<Rune> runes { get; set; }
         public List<Mastery> masteries { get; set; }
         public List<object> gameCustomizationObjects { get; set; }
+        public Perk perks { get; set; }
         public Champion champion { get; set; }
         public Spell Spell1 { get; set; }
         public Spell Spell2 { get; set; }
+        public List<PlayerLeague> PlayerLeagues { get; set; }
 
 
-        public Participant(long championId, int spell1Id, int spell2Id)
+        public Participant(long summonerId, long championId, int spell1Id, int spell2Id)
         {
             champion = Globals.GetChampionByID(championId);
-            //Spell1 = Globals.GetSpellByID(spell1Id);
-            //Spell2 = Globals.GetSpellByID(spell2Id);
+            Spell1 = Globals.GetSpellByID(spell1Id);
+            Spell2 = Globals.GetSpellByID(spell2Id);
+            //Get player's league
+            PlayerLeagues = Globals.GetPlayersLeagues(summonerId);
         }
     }
 }

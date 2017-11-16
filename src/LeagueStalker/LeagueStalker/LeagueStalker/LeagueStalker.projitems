@@ -25,6 +25,7 @@
       <DependentUpon>Checkbox.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CircularProgressControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CurrentMatch.xaml.cs">
       <DependentUpon>CurrentMatch.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -38,12 +39,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Exist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\GameMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\GameType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Lane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\LoadUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Login.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PasswordReset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PlatformId.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\QueueType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Register.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ResendConfirmation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Role.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DatabaseManager.cs" />
@@ -62,6 +66,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Participant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Perk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\PlayerLeague.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Rune.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Spell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\PasswordReset.cs" />
@@ -71,6 +77,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extra\PlayerInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProcessLoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Signup\MainViewModel.cs" />
@@ -90,6 +97,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Extra\PlayerInfo.xaml.cs">
+      <DependentUpon>PlayerInfo.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
@@ -184,6 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\PlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Extra\PlayerInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

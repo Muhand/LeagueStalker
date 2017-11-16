@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeagueStalker.Views.Extra.PlayerInfo"
+             xmlns:CustomControls="clr-namespace:LeagueStalker.CustomControls"
+             xmlns:CustomBehaviors="clr-namespace:LeagueStalker.Behaviors"
+             xmlns:Converters="clr-namespace:LeagueStalker.Converters"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Padding="0,20,0,0">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0,6,0,0">
+                <Button Text="CANCEL" TextColor="{StaticResource ThemeColor}" BackgroundColor="Transparent" 
+                    BorderColor="{StaticResource ThemeColor}" BorderWidth="1" BorderRadius="0"
+                    HeightRequest="22" WidthRequest="76"
+                    VerticalOptions="Start" HorizontalOptions="Start" Margin="12,0,0,0"
+                    Command="{Binding CancelCommand}"/>
+                
+                <!--Header, includes rank information and user information-->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Margin="12,15,0,0">
+                    <!--User Info-->
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="Start" Spacing="5" Margin="0,20,0,0">
+                        <CustomControls:ExtendedImage WidthRequest="45" HeightRequest="45" Aspect="AspectFill" Source="{Binding SummonerIcon}"
+                                                      IsCircular="True" BorderColor="{StaticResource DisabledColor}" BorderWidth="1.0"
+                                                      HorizontalOptions="Start"/>
+                        <!--Level-->
+                        <Label Text="{Binding SummonerLevel, StringFormat='Level: {0}'}"
+                               HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="15" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                        
+                        <!--Summoner Name-->
+                        <Label Text="{Binding SummonerName, StringFormat='{0}'}"
+                               HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="15" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                        
+                        <!--Champion Name-->
+                        <Label Text="{Binding ChampionName, StringFormat='{0}'}"
+                               HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="15" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                        
+                        <!--Keystones-->
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="3">
+                            <CustomControls:ExtendedImage WidthRequest="24" HeightRequest="24" Aspect="AspectFill" Source="{Binding Keystone1Image}" 
+                                                          BorderColor="{StaticResource DisabledColor}" BorderWidth="0.5" CornerRadius="0"/>
+
+                            <CustomControls:ExtendedImage WidthRequest="24" HeightRequest="24" Aspect="AspectFill" Source="{Binding Keystone2Image}" 
+                                                          BorderColor="{StaticResource DisabledColor}" BorderWidth="0.5" CornerRadius="0"/>
+                        </StackLayout>
+
+                        <!--Spells-->
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="3">
+                            <CustomControls:ExtendedImage WidthRequest="24" HeightRequest="24" Aspect="AspectFill" Source="{Binding Spell1Icon}" 
+                                                  BorderWidth="1.0" CornerRadius="0"/>
+
+                            <CustomControls:ExtendedImage WidthRequest="24" HeightRequest="24" Aspect="AspectFill" Source="{Binding Spell2Icon}"
+                                                  BorderWidth="1.0" CornerRadius="0"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                    
+                    <!--Rank-->
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Spacing="2">
+                        <CustomControls:ExtendedImage WidthRequest="200" HeightRequest="200" Aspect="AspectFill" Source="{Binding RankIcon}" 
+                                                      BorderWidth="0" CornerRadius="0"/>
+
+                        <Label Text="{Binding RankName, StringFormat='{0}'}"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="20" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!--Stats-->
+                <StackLayout Orientation="Horizontal" Spacing="57" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical">
+                        <CustomControls:CircularProgressControl Progress="{Binding WinsProgress}" WidthRequest="117" HeightRequest="117"/>
+                        <Label Text="WIN RATE"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="20" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical">
+                        <CustomControls:CircularProgressControl Progress="{Binding LosesProgress}" WidthRequest="117" HeightRequest="117"/>
+                        <Label Text="SUPPORT"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="20" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <!--Stats numbers-->
+                <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                    <Label Text="{Binding Wins, StringFormat='{0}W'}"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="40" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource GreenColor}"/>
+
+                    <Label Text="-"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="40" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
+
+                    <Label Text="{Binding Loses, StringFormat='{0}L'}"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="40" FontFamily="Segoe UI"
+                               FontAttributes="None" TextColor="{StaticResource RedColor}"/>
+                </StackLayout>
+
+
+            </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -154,6 +154,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\checkmark_24x24_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\progress_pending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\progress_done.png" />
+  </ItemGroup>
   <Import Project="..\LeagueStalker\LeagueStalker.projitems" Label="Shared" Condition="Exists('..\LeagueStalker\LeagueStalker.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -2,30 +2,57 @@
 using LeagueStalker.ServerResponse.LOLAPI;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace LeagueStalker
 {
     public struct CDNExtensions
     {
-        public static string Spell = "img/spell";
-        public static string ProfileIcon = "img/profileicon";
+        public struct LOL
+        {
+            public static string Spell = "img/spell";
+            public static string ProfileIcon = "img/profileicon";
+        }
+
+        public struct Stalker
+        {
+            public static string ProfileIcon = "profileicons.php";
+            public static string PerkIcon = "perk/perk";
+            public static string PerkStyleIcon = "perk/perkStyle";
+            public static string TierIcon = "ranked/tier";
+        }
     }
 
     public struct APILinks
     {
-        public static string LeagueVersionLink = "https://na1.api.riotgames.com/lol/static-data/v3/versions";
-        public static string SummonerAPILink = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name";
-        public static string CDNLink = "http://ddragon.leagueoflegends.com/cdn";
-        public static string ChampionLink = "https://na1.api.riotgames.com/lol/static-data/v3/champions";
-        public static string ChampionSplashScreenLink = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash";
-        public static string SpellLink = "https://na1.api.riotgames.com/lol/static-data/v3/summoner-spells";
+        public struct LOL
+        {
+            public static string LeagueVersionLink = "https://na1.api.riotgames.com/lol/static-data/v3/versions";
+            public static string SummonerAPILink = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name";
+            public static string CDNLink = "http://ddragon.leagueoflegends.com/cdn";
+            public static string ChampionLink = "https://na1.api.riotgames.com/lol/static-data/v3/champions";
+            public static string ChampionSplashScreenLink = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash";
+            public static string SpellLink = "https://na1.api.riotgames.com/lol/static-data/v3/summoner-spells";
+            public static string LeaguesLink = "https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner";
+        }
+
+        public struct Stalker
+        {
+            public static string Static_Data = "http://api.leaguestalker.muhandjumah.com/api/lolapi/static-data";
+            public static string Champion = "http://api.leaguestalker.muhandjumah.com/api/lolapi/static-data/champions.php";
+            public static string Spell = "http://api.leaguestalker.muhandjumah.com/api/lolapi/static-data/spells.php";
+            public static string CDN = "http://api.leaguestalker.muhandjumah.com/cdn";
+        }
+
     }
 
     public static class Globals
     {
-        public const string RiotAPIKey = "RGAPI-4ccd82ae-493b-4df5-ba3f-7eff7b020842";
+        public const string RiotAPIKey = "RGAPI-fe06e8ab-0cc4-4811-86dc-0cb53881db23";
 
         #region Properties
         public static User CurrentUser
@@ -55,7 +82,7 @@ namespace LeagueStalker
             //Construct the link
             //ex: https://na1.api.riotgames.com/lol/static-data/v3/versions?api_key=RGAPI-fc468df1-a885-44b5-90dd-8283b4c6e01f
 
-            string link = String.Format("{0}?api_key={1}", APILinks.LeagueVersionLink, RiotAPIKey);
+            string link = String.Format("{0}?api_key={1}", APILinks.LOL.LeagueVersionLink, RiotAPIKey);
 
             //Start downloading the json data
             WebClient w = new WebClient();
@@ -83,7 +110,7 @@ namespace LeagueStalker
         {
             //Construct a link to get the summoner data
             //EX: https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/WarDesigner?api_key=RGAPI-af16708c-73aa-451e-8a3d-78242f0c9949
-            string link = String.Format("{0}/{1}?api_key={2}", APILinks.SummonerAPILink,summonerName,RiotAPIKey);
+            string link = String.Format("{0}/{1}?api_key={2}", APILinks.LOL.SummonerAPILink,summonerName,RiotAPIKey);
 
             //Start downloading the json data
             WebClient w = new WebClient();
@@ -132,8 +159,7 @@ namespace LeagueStalker
             //0 = link for the profile icon
             //1 = League Version
             //2 = Icon ID
-            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.CDNLink, CurrentLeagueVersion,CDNExtensions.ProfileIcon, iconID);
-
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion,CDNExtensions.LOL.ProfileIcon, iconID);
             return link;
 
         }
@@ -145,7 +171,8 @@ namespace LeagueStalker
             //0 = link for the champion
             //1 = Id for the champion
             //2 = API key
-            string link = String.Format("{0}/{1}?locale=en_US&api_key={2}", APILinks.ChampionLink, id, RiotAPIKey);
+            //string link = String.Format("{0}/{1}?locale=en_US&api_key={2}", APILinks.ChampionLink, id, RiotAPIKey);
+            string link = String.Format("{0}?id={1}",APILinks.Stalker.Champion, id);
 
             //Start downloading the json data
             WebClient w = new WebClient();
@@ -168,26 +195,26 @@ namespace LeagueStalker
             }
         }
 
-        public static string GetChampionSplashSCreen(string championName)
+        public static string GetChampionSplashScreen(string championName)
         {
             //EX: http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_3.jpg
 
             //0 = link for the splashscreen
             //1 = champion name
-            string link = String.Format("{0}/{1}_3.jpg", APILinks.ChampionSplashScreenLink, championName);
+            string link = String.Format("{0}/{1}_3.jpg", APILinks.LOL.ChampionSplashScreenLink, championName);
 
             return link;
 
         }
 
-        public static string GetChampionSplashSCreen(string championName, long skinId)
+        public static string GetChampionSplashScreen(string championName, long skinId)
         {
             //EX: http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Taric_3.jpg
 
             //0 = link for the splashscreen
             //1 = champion name
             //2 = skin ID
-            string link = String.Format("{0}/{1}_{2}.jpg", APILinks.ChampionSplashScreenLink, championName,skinId);
+            string link = String.Format("{0}/{1}_{2}.jpg", APILinks.LOL.ChampionSplashScreenLink, championName,skinId);
 
             return link;
         }
@@ -198,7 +225,8 @@ namespace LeagueStalker
 
             //0 = SpellID
             //1 = API key
-            string link = String.Format("{0}/{1}?locale=en_US&api_key={2}", APILinks.SpellLink, spellID, RiotAPIKey);
+            //string link = String.Format("{0}/{1}?locale=en_US&api_key={2}", APILinks.SpellLink, spellID, RiotAPIKey);
+            string link = String.Format("{0}?id={1}",APILinks.Stalker.Spell,spellID);
 
             //Start downloading the json data
             WebClient w = new WebClient();
@@ -228,11 +256,81 @@ namespace LeagueStalker
             //1 = current League version
             //2 = Extension
             //3 = IconID
-            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.CDNLink, CurrentLeagueVersion, CDNExtensions.Spell, spellName);
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.Spell, spellName);
 
             return link;
 
         }
+
+        public static string GetPerkIcon(long perkID)
+        {
+            //EX: http://api.leaguestalker.muhandjumah.com/cdn/perk/perk/8005.png
+
+            //0 = link for the icon
+            //1 = Extension
+            //2 = IconID
+            string link = String.Format("{0}/{1}/{2}.png", APILinks.Stalker.CDN, CDNExtensions.Stalker.PerkIcon, perkID);
+
+            return link;
+        }
+
+        public static string GetPerkStyleIcon(long perkID)
+        {
+            //EX: http://api.leaguestalker.muhandjumah.com/cdn/perk/perkStyle/8000.png
+
+            //0 = link for the icon
+            //1 = Extension
+            //2 = IconID
+            string link = String.Format("{0}/{1}/{2}.png", APILinks.Stalker.CDN, CDNExtensions.Stalker.PerkStyleIcon, perkID);
+
+            return link;
+        }
+
+        public static List<PlayerLeague> GetPlayersLeagues(long summonerId)
+        {
+            //Construct a link to get the summoner data
+            //EX: https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner/59219772?api_key=RGAPI-b953fb0b-b023-40d4-a364-a55775382b76
+
+            //0 = link for the leagues
+            //1 = summoner ID
+            //2 = API Key
+            string link = String.Format("{0}/{1}?api_key={2}", APILinks.LOL.LeaguesLink, summonerId, RiotAPIKey);
+
+            //Start downloading the json data
+            WebClient w = new WebClient();
+
+            List<PlayerLeague> res = new List<PlayerLeague>();
+
+            //Try to get the data
+            try
+            {
+                //Download the data
+                string data = w.DownloadString(link);
+
+                //Construct a summoner object
+                res = JsonConvert.DeserializeObject<List<PlayerLeague>>(data);
+            }
+            catch (WebException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return res;
+        }
+
+        public static string GetTierIcon(string tierName, string rank)
+        {
+            //EX: http://api.leaguestalker.muhandjumah.com/cdn/ranked/tier/BRONZE_I.png
+
+            //0 = link for the cdn
+            //1 = Extension
+            //2 = tier
+            //3 = rank
+            string link = String.Format("{0}/{1}/{2}_{3}.png", APILinks.Stalker.CDN, CDNExtensions.Stalker.TierIcon, tierName,rank);
+
+            return link;
+        }
+
         #endregion
     }
 }

@@ -1,0 +1,3 @@
+username: muhand5_ls_statk
+pw: 2icIIp!mZ!@!
+db: muhand5_ls_static

@@ -192,6 +192,12 @@
   <ItemGroup>
     <BundleResource Include="Resources\flash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\progress_pending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\progress_done.png" />
+  </ItemGroup>
   <Import Project="..\LeagueStalker\LeagueStalker.projitems" Label="Shared" Condition="Exists('..\LeagueStalker\LeagueStalker.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

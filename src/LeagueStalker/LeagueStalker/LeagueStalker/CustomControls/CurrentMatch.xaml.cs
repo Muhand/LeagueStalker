@@ -10,13 +10,13 @@ using LeagueStalker.Models;
 using LeagueStalker.ServerResponse.LOLAPI;
 using System.ComponentModel;
 using System.Threading;
+using System.Diagnostics;
 
 namespace LeagueStalker.CustomControls
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CurrentMatch : ContentView, INotifyPropertyChanged
     {
-        private Random rnd = new Random();
         #region Properties
         public static readonly BindableProperty CurrentGameProperty = BindableProperty.Create(
             propertyName: "CurrentGame",
@@ -45,12 +45,13 @@ namespace LeagueStalker.CustomControls
         }
         #endregion
 
+        #region Constructor(s)
         public CurrentMatch (Game g)
 		{
 			InitializeComponent ();
 
             CurrentGame = g;
-
+            
             //As long as our current game is not null
             if(CurrentGame != null)
             {
@@ -58,51 +59,55 @@ namespace LeagueStalker.CustomControls
                 //{
                 //    createViews();
                 //}).Start();
-
-                foreach (var participant in CurrentGame.participants)
-                {
-
-                    //Create a new playerview
-                    PlayerView v = new PlayerView();
-                    //v.BackgroundColor = Color.FromRgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
-                    v.SummonerIcon = Globals.GetSummonerIcon(participant.profileIconId);
-                    v.SummonerName = participant.summonerName;
-                    //v.ChampionName = participant.champion.name;
-                    //v.ChampionName = "TEST";
-                    //v.BackgroundImage = Globals.GetChampionSplashSCreen(participant.champion.name);
-                    //v.Spell1Icon = Globals.GetSpellIcon(participant.Spell1.key);
-                    //v.Spell2Icon = Globals.GetSpellIcon(participant.Spell2.key);
-
-                    //If the participant belongs to team 100 (first team) then add it to the first group
-                    //Otherwise add it to the other group
-                    if (participant.teamId == 100)
-                    {
-                        TeamA.Children.Add(v);
-                    }
-                    else
-                    {
-                        TeamB.Children.Add(v);
-                    }
-                    Thread.Sleep(10000);
-                }
-
+                Task.Run(async () => await createViews());
             }
-		}
 
-        private void createViews()
+            //foreach (var item in TeamA.Children)
+            //{
+            //    TapGestureRecognizer tp = new TapGestureRecognizer();
+            //    tp.Tapped += (sender, e) =>
+            //    {
+            //        Debug.WriteLine("Clicked");
+            //    };
+            //    item.GestureRecognizers.Add(tp);
+            //}
+            //foreach (var item in TeamB.Children)
+            //{
+            //    TapGestureRecognizer tp = new TapGestureRecognizer();
+            //    tp.Tapped += (sender, e) =>
+            //    {
+            //        Debug.WriteLine("Clicked");
+            //    };
+            //    item.GestureRecognizers.Add(tp);
+            //}
+
+        }
+        #endregion
+
+        private async Task createViews()
         {
+
             foreach (var participant in CurrentGame.participants)
             {
 
                 //Create a new playerview
                 PlayerView v = new PlayerView();
-                //v.BackgroundColor = Color.FromRgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+                //v.CurrentParticipant = participant;
                 v.SummonerIcon = Globals.GetSummonerIcon(participant.profileIconId);
                 v.SummonerName = participant.summonerName;
                 v.ChampionName = participant.champion.name;
-                v.BackgroundImage = Globals.GetChampionSplashSCreen(participant.champion.name);
+                v.BackgroundImage = Globals.GetChampionSplashScreen(participant.champion.name);
                 v.Spell1Icon = Globals.GetSpellIcon(participant.Spell1.key);
                 v.Spell2Icon = Globals.GetSpellIcon(participant.Spell2.key);
+                v.Keystone1Image = Globals.GetPerkIcon(participant.perks.perkIds[0]);
+                v.Keystone2Image = Globals.GetPerkStyleIcon(participant.perks.perkSubStyle);
+               
+                //Debug.WriteLine(participant.perks.perkIds[0]);
+
+                //for (int i = 0; i < participant.perks.perkIds.Count; i++)
+                //{
+                //    Debug.WriteLine("PERK #"+i+": "+ participant.perks.perkIds[i]);
+                //}
 
                 //If the participant belongs to team 100 (first team) then add it to the first group
                 //Otherwise add it to the other group
@@ -114,7 +119,33 @@ namespace LeagueStalker.CustomControls
                 {
                     TeamB.Children.Add(v);
                 }
+
+                //Task.Run(async () => {
+
+                //});
+                TapGestureRecognizer tp = new TapGestureRecognizer();
+                tp.Tapped += (sender, e) =>
+                {
+                    //Debug.WriteLine("CLICKED: "+participant.summonerName);
+                    try
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            //p.Navigation.PushModalAsync(new Views.Signup.Main());
+                            //Application.Current.MainPage.Navigation.PushModalAsync(new Views.Signup.Main());
+                            Application.Current.MainPage = new Views.Extra.PlayerInfo(participant);
+                            //Globals.HomePage.Navigation.PushModalAsync(new Views.Extra.PlayerInfo(participant));
+                            //this.Navigation.PushModalAsync(new Views.Extra.PlayerInfo(participant));
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw;
+                    }
+                };
+                v.GestureRecognizers.Add(tp);
             }
         }
-	}
+    }
 }

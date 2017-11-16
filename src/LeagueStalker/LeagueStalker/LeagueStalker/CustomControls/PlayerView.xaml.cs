@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeagueStalker.Views.Extra;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using LeagueStalker.ServerResponse.LOLAPI;
 
 namespace LeagueStalker.CustomControls
 {
@@ -14,17 +16,30 @@ namespace LeagueStalker.CustomControls
 	public partial class PlayerView : ContentView
 	{
         #region Properties
-        public static readonly BindableProperty KeystoneImageProperty = BindableProperty.Create(
-            propertyName: "KeystoneImage",
+        public static readonly BindableProperty KeystoneImage1Property = BindableProperty.Create(
+            propertyName: "Keystone1Image",
             returnType: typeof(string),
             declaringType: typeof(PlayerView),
             defaultValue: "");
 
-        public string KeystoneImage
+        public string Keystone1Image
         {
-            get { return (string)GetValue(KeystoneImageProperty); }
-            set { SetValue(KeystoneImageProperty, value); }
+            get { return (string)GetValue(KeystoneImage1Property); }
+            set { SetValue(KeystoneImage1Property, value); }
         }
+
+        public static readonly BindableProperty KeystoneImage2Property = BindableProperty.Create(
+            propertyName: "Keystone2Image",
+            returnType: typeof(string),
+            declaringType: typeof(PlayerView),
+            defaultValue: "");
+
+        public string Keystone2Image
+        {
+            get { return (string)GetValue(KeystoneImage2Property); }
+            set { SetValue(KeystoneImage2Property, value); }
+        }
+
 
         public static readonly BindableProperty SummonerIconProperty = BindableProperty.Create(
             propertyName: "SummonerIcon",
@@ -97,25 +112,74 @@ namespace LeagueStalker.CustomControls
             get { return (string)GetValue(ChampionNameProperty); }
             set { SetValue(ChampionNameProperty, value); }
         }
+
+        //public static readonly BindableProperty CurrentParticipantProperty = BindableProperty.Create(
+        //    propertyName: "CurrentParticipant",
+        //    returnType: typeof(Participant),
+        //    declaringType: typeof(PlayerView),
+        //    defaultValue: null);
+
+        //public Participant CurrentParticipant
+        //{
+        //    get { return (Participant)GetValue(CurrentParticipantProperty); }
+        //    set { SetValue(CurrentParticipantProperty, value); }
+        //}
+
+        //public INavigation localNavigation { get; set; }
+
         #endregion
 
         #region Command
-        public ICommand Clicked
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    Debug.WriteLine("CLICKED");
-                });
-            }
-        }
+        //public ICommand Clicked
+        //{
+        //    get
+        //    {
+        //        return new Command(() =>
+        //        {
+        //            Debug.WriteLine("CLICKED");
+        //            //if (CurrentParticipant != null)
+        //            ViewPlayerInfo();
+        //        });
+        //    }
+        //}
+        //public ICommand Clicked
+        //{
+        //    get
+        //    {
+        //        return new Command(() =>
+        //        {
+        //            SignUp();
+        //            //Application.Current.MainPage.Navigation.PushAsync(new Views.Signup.Main());
+        //        });
+        //    }
+        //}
+
         #endregion
 
+        #region Constructor(s)
         public PlayerView ()
 		{
 			InitializeComponent ();
             BindingContext = this;
 		}
-	}
+        #endregion
+
+        #region Utility Methods
+        //async private void ViewPlayerInfo()
+        //{
+        //    //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Extra.PlayerInfo());
+        //    await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Signup.Main());
+        //}
+        //private void SignUp()
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        localNavigation.PushModalAsync(new Views.Signup.Main());
+        //    });
+        //    //await Application.Current.MainPage.Navigation.PushModalAsync(new Views.Signup.Main());
+        //    //await localNavigation.PushModalAsync(new Views.Signup.Main());
+        //    //await this.Navigation.PushModalAsync(new Views.Signup.Main());
+        //}
+        #endregion
+    }
 }
