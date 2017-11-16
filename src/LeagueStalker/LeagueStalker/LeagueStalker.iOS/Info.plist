@@ -18,9 +18,9 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>LeagueStalker</string>
+	<string>LoL Stalker</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.muhandjumah.LeagueStalker</string>
+	<string>com.muhandjumah.lolstalker</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
@@ -45,7 +45,11 @@
 	<string>LaunchScreen.storyboard</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
-  <key>UIViewControllerBasedStatusBarAppearance</key>
-  <false/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
