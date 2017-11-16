@@ -5,6 +5,11 @@ using System.Text;
 using LeagueStalker.Helpers;
 using LeagueStalker.Interfaces.Implementation;
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
+using Microsoft.AppCenter.Distribute;
 
 namespace LeagueStalker
 {
@@ -14,6 +19,13 @@ namespace LeagueStalker
         public App()
         {
             InitializeComponent();
+
+            //AppCenter.Start("ios=05489b0d-2d51-4b0c-8b7b-38fbd42992b9;" + "uwp={Your UWP App secret here};" +
+            //       "android={Your Android App secret here}",
+            //       typeof(Analytics), typeof(Crashes));
+
+            AppCenter.Start("ios=05489b0d-2d51-4b0c-8b7b-38fbd42992b9;",
+                   typeof(Analytics), typeof(Crashes), typeof(Push), typeof(Distribute));
 
             DBManager = new DatabaseManager(new RestService());
 
