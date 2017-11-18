@@ -10,6 +10,7 @@ namespace LeagueStalker.Enums
         SOLO,
         DUO,
         DUO_CARRY,
-        DUO_SUPPORT
+        DUO_SUPPORT,
+        Unknown
     }
 }

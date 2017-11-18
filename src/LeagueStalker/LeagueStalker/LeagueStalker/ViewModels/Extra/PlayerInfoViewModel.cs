@@ -192,6 +192,56 @@ namespace LeagueStalker.ViewModels.Extra
             }
         }
 
+
+        private double _winsProgressPercentage;
+
+        public double WinsProgressPercentage
+        {
+            get { return _winsProgressPercentage; }
+            set
+            {
+                _winsProgressPercentage = value;
+                OnPropertyChanged(nameof(WinsProgressPercentage));
+            }
+        }
+
+        private double _losesProgressPercentage;
+
+        public double LosesProgressPercentage
+        {
+            get { return _losesProgressPercentage; }
+            set
+            {
+                _losesProgressPercentage = value;
+                OnPropertyChanged(nameof(LosesProgressPercentage));
+            }
+        }
+
+        private string _laneName;
+
+        public string LaneName
+        {
+            get { return _laneName; }
+            set
+            {
+                _laneName = value;
+                OnPropertyChanged(nameof(LaneName));
+            }
+
+        }
+        private double _mostPlayedLanePercentage;
+
+        public double MostPlayedLanePercentage
+        {
+            get { return _mostPlayedLanePercentage; }
+            set
+            {
+                _mostPlayedLanePercentage = value;
+                OnPropertyChanged(nameof(MostPlayedLanePercentage));
+            }
+        }
+        
+
         #endregion
 
         #region Commands
@@ -222,13 +272,17 @@ namespace LeagueStalker.ViewModels.Extra
         {
             //Get player's info
             this.SummonerIcon = Globals.GetSummonerIcon(participant.profileIconId);
-            this.SummonerLevel = Globals.GetSummonerInfo(participant.summonerName).summonerLevel.ToString();
-            this.SummonerName = participant.summonerName;
+            //this.SummonerLevel = Globals.GetSummonerInfo(participant.summonerName).summonerLevel.ToString();
+            this.SummonerLevel = participant.summonerInfo.summonerLevel.ToString();
+            //this.SummonerName = participant.summonerName;
+            this.SummonerName = participant.summonerInfo.name;
             this.ChampionName = participant.champion.name;
             this.Keystone1Image = Globals.GetPerkIcon(participant.perks.perkIds[0]);
             this.Keystone2Image = Globals.GetPerkStyleIcon(participant.perks.perkSubStyle);
             this.Spell1Icon = Globals.GetSpellIcon(participant.Spell1.key);
             this.Spell2Icon = Globals.GetSpellIcon(participant.Spell2.key);
+            this.LaneName = participant.MostPlayedLane.ToString();
+            this.MostPlayedLanePercentage = participant.MostPlayedLanePercentage;
 
             //Get player's rank
             foreach (var league in participant.PlayerLeagues)
@@ -248,6 +302,9 @@ namespace LeagueStalker.ViewModels.Extra
 
                     //Calculate loses progress
                     LosesProgress = league.losses / (totalPlayedGames+0.0);
+
+                    WinsProgressPercentage = WinsProgress * 100.0;
+                    LosesProgressPercentage = LosesProgress * 100.0;
 
                     Debug.WriteLine("WINS: " + WinsProgress);
                     Debug.WriteLine("Loses: " + LosesProgress);

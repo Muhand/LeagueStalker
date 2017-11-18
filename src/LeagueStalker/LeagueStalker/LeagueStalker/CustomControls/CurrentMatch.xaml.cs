@@ -94,7 +94,7 @@ namespace LeagueStalker.CustomControls
                 PlayerView v = new PlayerView();
                 //v.CurrentParticipant = participant;
                 v.SummonerIcon = Globals.GetSummonerIcon(participant.profileIconId);
-                v.SummonerName = participant.summonerName;
+                v.SummonerName = participant.summonerInfo.name;
                 v.ChampionName = participant.champion.name;
                 v.BackgroundImage = Globals.GetChampionSplashScreen(participant.champion.name);
                 v.Spell1Icon = Globals.GetSpellIcon(participant.Spell1.key);

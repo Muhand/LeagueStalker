@@ -38,6 +38,7 @@ namespace LeagueStalker
             public static string ChampionSplashScreenLink = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash";
             public static string SpellLink = "https://na1.api.riotgames.com/lol/static-data/v3/summoner-spells";
             public static string LeaguesLink = "https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner";
+            public static string MatchesLink = "https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account";
         }
 
         public struct Stalker
@@ -52,7 +53,7 @@ namespace LeagueStalker
 
     public static class Globals
     {
-        public const string RiotAPIKey = "RGAPI-fe06e8ab-0cc4-4811-86dc-0cb53881db23";
+        public const string RiotAPIKey = "RGAPI-0eb71a6d-c7d7-4cad-9fa9-3efb1d698565";
 
         #region Properties
         public static User CurrentUser
@@ -331,6 +332,67 @@ namespace LeagueStalker
             return link;
         }
 
+        public static Matches GetMatches(long accountId)
+        {
+            //EX: https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/220167353?beginIndex=0&endIndex=100&api_key=
+
+            //0 = link for the matches
+            //1 = account ID
+            //2 = API Key
+            string link = String.Format("{0}/{1}?beginIndex=0&endIndex=100&api_key={2}", APILinks.LOL.MatchesLink, accountId, RiotAPIKey);
+
+            //Start downloading the json data
+            WebClient w = new WebClient();
+
+            Matches res = new Matches();
+
+            //Try to get the data
+            try
+            {
+                //Download the data
+                string data = w.DownloadString(link);
+
+                //Construct a summoner object
+                res = JsonConvert.DeserializeObject<Matches>(data);
+            }
+            catch (WebException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return res;
+        }
+
+        public static Matches GetMatches(long accountId, long beginIndex, long endIndex)
+        {
+            //EX: https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/220167353?beginIndex=0&endIndex=100&api_key=
+
+            //0 = link for the matches
+            //1 = account ID
+            //2 = API Key
+            string link = String.Format("{0}/{1}?beginIndex={2}&endIndex={3}&api_key={4}", APILinks.LOL.MatchesLink, accountId,beginIndex,endIndex, RiotAPIKey);
+
+            //Start downloading the json data
+            WebClient w = new WebClient();
+
+            Matches res = new Matches();
+
+            //Try to get the data
+            try
+            {
+                //Download the data
+                string data = w.DownloadString(link);
+
+                //Construct a summoner object
+                res = JsonConvert.DeserializeObject<Matches>(data);
+            }
+            catch (WebException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return res;
+        }
         #endregion
     }
 }

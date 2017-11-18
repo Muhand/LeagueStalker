@@ -19,7 +19,6 @@ namespace LeagueStalker.CustomControls
             background2 = CreateImage("progress_pending");
             progress2 = CreateImage("progress_done");
             HandleProgressChanged(1, 0);
-            
         }
 
         private View CreateImage(string v1)

@@ -11,6 +11,7 @@ namespace LeagueStalker.Enums
         MIDDLE,
         BOT,
         BOTTOM,
-        JUNGLE
+        JUNGLE,
+        Unknown
     }
 }

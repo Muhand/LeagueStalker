@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SummonerNameValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LoginButtonEnableDisable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ProgressBarTextColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignupButtonEnableDisable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\Checkbox.xaml.cs">
       <DependentUpon>Checkbox.xaml</DependentUpon>
@@ -63,6 +64,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Champion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Mastery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Match.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Matches.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Participant.cs" />
