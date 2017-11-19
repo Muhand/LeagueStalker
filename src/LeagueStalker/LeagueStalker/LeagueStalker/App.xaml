@@ -17,6 +17,7 @@
             <Color x:Key="MainTabBackgroundColor">#010A13</Color>
             <Color x:Key="GreenColor">#00FF00</Color>
             <Color x:Key="RedColor">#FF0000</Color>
+            <Color x:Key="SectionColor">#57626D</Color>
         </ResourceDictionary>
 
     </Application.Resources>

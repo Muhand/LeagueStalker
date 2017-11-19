@@ -1,9 +1,11 @@
 ﻿using LeagueStalker.Models;
 using LeagueStalker.ServerResponse.LOLAPI;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,6 +26,7 @@ namespace LeagueStalker
             public static string PerkIcon = "perk/perk";
             public static string PerkStyleIcon = "perk/perkStyle";
             public static string TierIcon = "ranked/tier";
+            public static string Versions = "versions.php";
         }
     }
 
@@ -53,7 +56,7 @@ namespace LeagueStalker
 
     public static class Globals
     {
-        public const string RiotAPIKey = "RGAPI-0eb71a6d-c7d7-4cad-9fa9-3efb1d698565";
+        public const string RiotAPIKey = "RGAPI-ca8f5447-733a-4f3a-9983-515f05dc022a";
 
         #region Properties
         public static User CurrentUser
@@ -80,10 +83,39 @@ namespace LeagueStalker
 
         public static string GetCurrentLeagueVersion()
         {
-            //Construct the link
-            //ex: https://na1.api.riotgames.com/lol/static-data/v3/versions?api_key=RGAPI-fc468df1-a885-44b5-90dd-8283b4c6e01f
+            #region Through League of Legends API
+            ////Construct the link
+            ////ex: https://na1.api.riotgames.com/lol/static-data/v3/versions?api_key=RGAPI-fc468df1-a885-44b5-90dd-8283b4c6e01f
 
-            string link = String.Format("{0}?api_key={1}", APILinks.LOL.LeagueVersionLink, RiotAPIKey);
+            //string link = String.Format("{0}?api_key={1}", APILinks.LOL.LeagueVersionLink, RiotAPIKey);
+
+            ////Start downloading the json data
+            //WebClient w = new WebClient();
+
+            //try
+            //{
+            //    string data = w.DownloadString(link);
+
+            //    //Construct the data
+            //    Newtonsoft.Json.Linq.JContainer versions = JsonConvert.DeserializeObject< Newtonsoft.Json.Linq.JContainer>(data);
+
+            //     //s = (Newtonsoft.Json.Linq.JContainer)versions;
+            //    //s[0].Value<string>;
+
+            //    return versions.First.ToString();
+            //}
+            //catch (Exception)
+            //{
+
+            //    return "";
+            //}
+            #endregion
+
+            #region Through my own server
+            //Construct the link
+            //ex: http://api.leaguestalker.muhandjumah.com/api/lolapi/static-data/versions.php
+
+            string link = String.Format("{0}/{1}", APILinks.Stalker.Static_Data, CDNExtensions.Stalker.Versions);
 
             //Start downloading the json data
             WebClient w = new WebClient();
@@ -93,18 +125,15 @@ namespace LeagueStalker
                 string data = w.DownloadString(link);
 
                 //Construct the data
-                Newtonsoft.Json.Linq.JContainer versions = JsonConvert.DeserializeObject< Newtonsoft.Json.Linq.JContainer>(data);
+                JArray versions = JsonConvert.DeserializeObject<JArray>(data);
 
-                 //s = (Newtonsoft.Json.Linq.JContainer)versions;
-                //s[0].Value<string>;
-
-                return versions.First.ToString();
+                return versions.First().ToString();
             }
             catch (Exception)
             {
-
                 return "";
             }
+            #endregion
         }
 
         public static SummonerInfo GetSummonerInfo(string summonerName)

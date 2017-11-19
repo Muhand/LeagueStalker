@@ -9,16 +9,17 @@
              Padding="0,20,0,0">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0,6,0,0">
+            
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0,0,0,0">
                 
-                <Button Text="CANCEL" TextColor="{StaticResource ThemeColor}" BackgroundColor="Transparent" 
+                <!--<Button Text="CANCEL" TextColor="{StaticResource ThemeColor}" BackgroundColor="Transparent" 
                     BorderColor="{StaticResource ThemeColor}" BorderWidth="1" BorderRadius="0"
                     HeightRequest="22" WidthRequest="76"
                     VerticalOptions="Start" HorizontalOptions="Start" Margin="12,0,0,0"
-                    Command="{Binding CancelCommand}"/>
+                    Command="{Binding CancelCommand}"/>-->
                 
                 <!--Header, includes rank information and user information-->
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0,15,0,0">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0,1,0,0">
                     <!--User Info-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start" Spacing="5">
                         <CustomControls:ExtendedImage WidthRequest="45" HeightRequest="45" Aspect="AspectFill" Source="{Binding SummonerIcon}"
@@ -32,7 +33,7 @@
                                FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
 
                             <!--Summoner Name-->
-                            <Label Text="{Binding SummonerName, StringFormat='Summoner Name: {0}'}"
+                            <Label Text="{Binding SummonerName, StringFormat='Summoner: {0}'}"
                                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" FontSize="15" FontFamily="Segoe UI"
                                FontAttributes="None" TextColor="{StaticResource DisabledColor}"/>
 
@@ -121,10 +122,58 @@
                                HorizontalTextAlignment="Center" VerticalTextAlignment="Start" FontSize="40" FontFamily="Segoe UI"
                                FontAttributes="None" TextColor="{StaticResource RedColor}"/>
                 </StackLayout>
+                
+                <!--Runes-->
+                <StackLayout Orientation="Vertical" Spacing="25" Margin="0,25,0,0">
+                    <Grid BackgroundColor="{StaticResource SectionColor}" HorizontalOptions="FillAndExpand" HeightRequest="55">
+                        <Label Text="CURRENT RUNES" TextColor="{StaticResource ThemeColor}" FontSize="25" FontFamily="Segoe UI"
+                               FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center" Margin="8,0,0,0"/>
+                    </Grid>
 
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="100">
+                        
+                        <StackLayout Orientation="Vertical" Spacing="1">
+                            <CustomControls:ExtendedImage WidthRequest="82" HeightRequest="82" Aspect="AspectFill" Source="{Binding MainRuneImage}" 
+                                                          BorderWidth="0" CornerRadius="0">
+                                
+                                <CustomControls:ExtendedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectMainRunes}"/>
+                                </CustomControls:ExtendedImage.GestureRecognizers>
+                                
+                            </CustomControls:ExtendedImage>
+                            
+                            <BoxView WidthRequest="75" HeightRequest="1" BackgroundColor="#95989A" IsVisible="{Binding MainRuneIsSelected}"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Spacing="1">
+                            <CustomControls:ExtendedImage WidthRequest="82" HeightRequest="82" Aspect="AspectFill" Source="{Binding SubRuneImage}" 
+                                                          BorderWidth="0" CornerRadius="0">
+                                
+                                <CustomControls:ExtendedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectSubRunes}"/>
+                                </CustomControls:ExtendedImage.GestureRecognizers>
+                            </CustomControls:ExtendedImage>
+
+                            <BoxView WidthRequest="75" HeightRequest="1" BackgroundColor="#95989A" IsVisible="{Binding SubRuneIsSelected}"/>
+                        </StackLayout>
+                        
+                    </StackLayout>
+
+                    <Grid>
+                        <StackLayout x:Name="MainRunesStackLayout" Orientation="Vertical" Spacing="5" IsVisible="{Binding MainRuneIsSelected}">
+                            
+                        </StackLayout>
+
+                        <StackLayout x:Name="SubRunesStackLayout" Orientation="Vertical" Spacing="5" IsVisible="{Binding SubRuneIsSelected}">
+
+                        </StackLayout>
+                    </Grid>
+                    
+                </StackLayout>
 
             </StackLayout>
-            
+           
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

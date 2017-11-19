@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeagueStalker.CustomControls.PerkView"
+             xmlns:CustomControls="clr-namespace:LeagueStalker.CustomControls"
+             xmlns:CustomBehaviors="clr-namespace:LeagueStalker.Behaviors"
+             xmlns:Converters="clr-namespace:LeagueStalker.Converters">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Spacing="20">
+            <CustomControls:ExtendedImage Aspect="AspectFill" Source="{Binding ImageSource}"
+                                          BorderWidth="0" CornerRadius="0" 
+                                          VerticalOptions="Center" HorizontalOptions="Start"
+                                          WidthRequest="{Binding IsKeystone, Converter={Converters:RuneWidthConverter}}"
+                                          HeightRequest="{Binding IsKeystone, Converter={Converters:RuneHeightConverter}}"/>
+
+            <StackLayout Orientation="Vertical" Spacing="5" VerticalOptions="Start" HorizontalOptions="Start">
+                <Label Text="{Binding Title}" TextColor="{Binding TitleColor}"
+                       FontSize="20" FontAttributes="Bold" FontFamily="Segoe UI"
+                       VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                       VerticalOptions="Start" HorizontalOptions="Start"/>
+
+                <Label Text="{Binding Description}" TextColor="#95989A"
+                       FontSize="14" FontAttributes="None" FontFamily="Segoe UI"
+                       VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                       VerticalOptions="Start" HorizontalOptions="Start"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

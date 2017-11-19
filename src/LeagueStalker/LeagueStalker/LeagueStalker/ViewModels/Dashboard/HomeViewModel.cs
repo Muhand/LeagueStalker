@@ -74,6 +74,7 @@ namespace LeagueStalker.ViewModels.Dashboard
             }
         }
 
+        public INavigation Navigation { get; set; }
 
         #endregion
 
@@ -102,8 +103,9 @@ namespace LeagueStalker.ViewModels.Dashboard
         #endregion
 
         #region Constructor(s)
-        public HomeViewModel(ref Grid g)
+        public HomeViewModel(ref Grid g,INavigation n)
         {
+            this.Navigation = n;
             init(ref g);
         }
 
@@ -126,9 +128,11 @@ namespace LeagueStalker.ViewModels.Dashboard
             {
                 //this.Status = "You are currently playing";
                 this.IsPlaying = true;
-                CurrentMatch matchView = new CurrentMatch(this.CurrentGame);
-                g.Children.Add(matchView);
-                matchView.IsVisible = IsPlaying;
+                MoveToCurrentMatch(this.CurrentGame);
+                //Application.Current.MainPage.Navigation.PushModalAsync(new Views.Extra.Match());
+                //CurrentMatch matchView = new CurrentMatch(this.CurrentGame);
+                //g.Children.Add(matchView);
+                //matchView.IsVisible = IsPlaying;
             }
         }
 
@@ -187,6 +191,11 @@ namespace LeagueStalker.ViewModels.Dashboard
                     Debug.WriteLine("default");
                     break;
             }
+        }
+
+        async private void MoveToCurrentMatch(Game game)
+        {
+            await this.Navigation.PushAsync(new Views.Extra.Match(game,this.Navigation));
         }
         #endregion
     }

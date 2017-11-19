@@ -21,18 +21,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LoginButtonEnableDisable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ProgressBarTextColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RuneHeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RuneWidthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SignupButtonEnableDisable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\Checkbox.xaml.cs">
       <DependentUpon>Checkbox.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CircularProgressControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CurrentMatch.xaml.cs">
-      <DependentUpon>CurrentMatch.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PerkView.xaml.cs">
+      <DependentUpon>PerkView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -80,6 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extra\MatchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extra\PlayerInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ProcessLoginViewModel.cs" />
@@ -100,6 +103,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Extra\Match.xaml.cs">
+      <DependentUpon>Match.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Extra\PlayerInfo.xaml.cs">
@@ -191,12 +198,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\CurrentMatch.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\PlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -204,6 +205,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Extra\PlayerInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Extra\Match.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\PerkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -17,7 +17,7 @@ namespace LeagueStalker.Views.Extra
 		public PlayerInfo (Participant participant)
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModels.Extra.PlayerInfoViewModel(participant);
+            BindingContext = new ViewModels.Extra.PlayerInfoViewModel(participant, MainRunesStackLayout,SubRunesStackLayout);
 		}
 	}
 }

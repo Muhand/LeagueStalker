@@ -4,12 +4,15 @@ using System.ComponentModel;
 using LeagueStalker.ServerResponse.LOLAPI;
 using System;
 using System.Diagnostics;
+using LeagueStalker.CustomControls;
 
 namespace LeagueStalker.ViewModels.Extra
 {
     class PlayerInfoViewModel : INotifyPropertyChanged
     {
         #region Properties
+        public Participant CurrentParticipant { get; set; }
+
         private string _summonerIcon;
 
         public string SummonerIcon
@@ -240,12 +243,81 @@ namespace LeagueStalker.ViewModels.Extra
                 OnPropertyChanged(nameof(MostPlayedLanePercentage));
             }
         }
-        
 
+        private bool _mainRuneIsSelected;
+
+        public bool MainRuneIsSelected
+        {
+            get { return _mainRuneIsSelected; }
+            set
+            {
+                _mainRuneIsSelected = value;
+                OnPropertyChanged(nameof(MainRuneIsSelected));
+            }
+        }
+
+        private bool _subRuneIsSelected;
+
+        public bool SubRuneIsSelected
+        {
+            get { return _subRuneIsSelected; }
+            set
+            {
+                _subRuneIsSelected = value;
+                OnPropertyChanged(nameof(SubRuneIsSelected));
+            }
+        }
+
+        private string _mainRuneImage;
+
+        public string MainRuneImage
+        {
+            get { return _mainRuneImage; }
+            set
+            {
+                _mainRuneImage = value;
+                OnPropertyChanged(nameof(MainRuneImage));
+            }
+        }
+
+        private string _subRuneImage;
+
+        public string SubRuneImage
+        {
+            get { return _subRuneImage; }
+            set
+            {
+                _subRuneImage = value;
+                OnPropertyChanged(nameof(SubRuneImage));
+            }
+        }
+
+        private StackLayout _mainRunesStackLayout;
+
+        public StackLayout MainRunesStackLayout
+        {
+            get { return _mainRunesStackLayout; }
+            set
+            {
+                _mainRunesStackLayout = value;
+                OnPropertyChanged(nameof(MainRunesStackLayout));
+            }
+        }
+
+        private StackLayout _subRunesStackLayout;
+
+        public StackLayout SubRunesStackLayout
+        {
+            get { return _subRunesStackLayout; }
+            set
+            {
+                _subRunesStackLayout = value;
+                OnPropertyChanged(nameof(SubRunesStackLayout));
+            }
+        }
         #endregion
 
         #region Commands
-
         public ICommand CancelCommand
         {
             get
@@ -256,6 +328,31 @@ namespace LeagueStalker.ViewModels.Extra
                 });
             }
         }
+
+        public ICommand SelectMainRunes
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    this.MainRuneIsSelected = true;
+                    this.SubRuneIsSelected = false;
+                });
+            }
+        }
+
+        public ICommand SelectSubRunes
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    this.MainRuneIsSelected = false;
+                    this.SubRuneIsSelected = true;
+                });
+            }
+        }
+
         #endregion
 
         #region Interfaces
@@ -268,8 +365,12 @@ namespace LeagueStalker.ViewModels.Extra
         #endregion
 
         #region Constructor(s)
-        public PlayerInfoViewModel(Participant participant)
+        public PlayerInfoViewModel(Participant participant, StackLayout mainRunesStackLayout, StackLayout subRunesStackLayout)
         {
+            this.CurrentParticipant = participant;
+            this.MainRunesStackLayout = mainRunesStackLayout;
+            this.SubRunesStackLayout = subRunesStackLayout;
+
             //Get player's info
             this.SummonerIcon = Globals.GetSummonerIcon(participant.profileIconId);
             //this.SummonerLevel = Globals.GetSummonerInfo(participant.summonerName).summonerLevel.ToString();
@@ -298,10 +399,10 @@ namespace LeagueStalker.ViewModels.Extra
 
                     long totalPlayedGames = league.wins + league.losses;
                     //Calculate wins progress
-                    WinsProgress = league.wins / (totalPlayedGames+0.0);
+                    WinsProgress = league.wins / (totalPlayedGames + 0.0);
 
                     //Calculate loses progress
-                    LosesProgress = league.losses / (totalPlayedGames+0.0);
+                    LosesProgress = league.losses / (totalPlayedGames + 0.0);
 
                     WinsProgressPercentage = WinsProgress * 100.0;
                     LosesProgressPercentage = LosesProgress * 100.0;
@@ -325,6 +426,96 @@ namespace LeagueStalker.ViewModels.Extra
                 this.RankIcon = Globals.GetTierIcon("PROVISIONAL", "I");
                 this.RankName = "Unranked";
             }
+
+            //Set runes
+            this.MainRuneIsSelected = true;
+            this.SubRuneIsSelected = false;
+
+            this.MainRuneImage = Globals.GetPerkStyleIcon(participant.perks.perkStyle);
+            this.SubRuneImage = Globals.GetPerkStyleIcon(participant.perks.perkSubStyle);
+
+            for (int i = 0; i < participant.perks.perkIds.Count; i++)
+            {
+                //Create a perkview first
+                PerkView pv = new PerkView();
+
+                //Create variable to hold the color(s) for the rune title
+                Color mainRunesTitleColor = Color.Default;
+                Color subRunesTitleColor = Color.Default;
+
+                #region Check the colors for the title
+                switch (participant.perks.perkStyle)
+                {
+                    case 8000:
+                        //Precision - #c8aa6e
+                        mainRunesTitleColor = Color.FromHex("#c8aa6e");
+                        break;
+                    case 8100:
+                        //Domination - #d44242
+                        mainRunesTitleColor = Color.FromHex("#d44242");
+                        break;
+                    case 8200:
+                        //Sorcery - #9faafc
+                        mainRunesTitleColor = Color.FromHex("#9faafc");
+                        break;
+                    case 8300:
+                        //Inspiration - #49aab9
+                        mainRunesTitleColor = Color.FromHex("#49aab9");
+                        break;
+                    case 8400:
+                        //Resolve - #a1d586
+                        mainRunesTitleColor = Color.FromHex("#a1d586");
+                        break;
+                }
+                switch (participant.perks.perkSubStyle)
+                {
+                    case 8000:
+                        //Precision - #c8aa6e
+                        subRunesTitleColor = Color.FromHex("#c8aa6e");
+                        break;
+                    case 8100:
+                        //Domination - #d44242
+                        subRunesTitleColor = Color.FromHex("#d44242");
+                        break;
+                    case 8200:
+                        //Sorcery - #9faafc
+                        subRunesTitleColor = Color.FromHex("#9faafc");
+                        break;
+                    case 8300:
+                        //Inspiration - #49aab9
+                        subRunesTitleColor = Color.FromHex("#49aab9");
+                        break;
+                    case 8400:
+                        //Resolve - #a1d586
+                        subRunesTitleColor = Color.FromHex("#a1d586");
+                        break;
+                }
+                #endregion
+
+                //Set perk information
+                pv.ImageSource = Globals.GetPerkIcon(participant.perks.perkIds[i]);
+                pv.Title = "TITLE TEST";
+                pv.Description = "Description Title";
+
+                //If the index is still less than 4 then it means we are in the primary runes
+                if (i < 4)
+                {
+                    //If the index is 0 then it means this is a keystone
+                    if (i == 0)
+                        pv.IsKeystone = true;
+
+                    pv.TitleColor = mainRunesTitleColor;
+                    this.MainRunesStackLayout.Children.Add(pv);
+                }
+                //If the index is 4 or larger then it means we are in the secondary runes
+                else
+                {
+                    pv.TitleColor = subRunesTitleColor;
+                    this.SubRunesStackLayout.Children.Add(pv);
+                }
+                
+            }
+
         }
         #endregion
 

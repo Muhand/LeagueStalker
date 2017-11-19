@@ -5,8 +5,9 @@
              xmlns:CustomControls="clr-namespace:LeagueStalker.CustomControls"
              xmlns:Converters="clr-namespace:LeagueStalker.Converters"
              BackgroundColor="{StaticResource MainBackgroundColor}"
+             xmlns:local="clr-namespace:LeagueStalker.Views.Extra"
              Padding="0,20,0,0">
-    
+
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <!--Email not confirmed-->
@@ -35,6 +36,10 @@
 
                 <!--<CustomControls:CurrentMatch IsVisible="{Binding IsPlaying}" CurrentGame="{Binding CurrentGame}"/>-->
 
+                <!--<local:Match IsVisible="{Binding IsPlaying}"/>-->
+                <!--<ContentPresenter>
+                    
+                </ContentPresenter>-->
             </Grid>
         </Grid>
     </ContentPage.Content>

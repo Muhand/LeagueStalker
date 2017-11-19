@@ -15,8 +15,7 @@ namespace LeagueStalker.Views.Dashboard
         public Home()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.Dashboard.HomeViewModel(ref MainContentGrid);
+            BindingContext = new ViewModels.Dashboard.HomeViewModel(ref MainContentGrid, this.Navigation);
         }
-
     }
 }

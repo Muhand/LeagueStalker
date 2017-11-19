@@ -5,7 +5,13 @@
              xmlns:local="clr-namespace:LeagueStalker.Views.Dashboard" BarBackgroundColor="#010A13">
 
     <local:History Title="History" Icon="History_32x32.png"/>
-    <local:Home Title="Home" Icon="home_32x32.png"/>
+    <!--<local:Home Title="Home" Icon="home_32x32.png"/>-->
+    <NavigationPage Title="Home" Icon="home_32x32.png" BarBackgroundColor="{StaticResource MainBackgroundColor}" 
+                    BarTextColor="{StaticResource ThemeColor}">
+        <x:Arguments>
+            <local:Home NavigationPage.HasNavigationBar="False"/>
+        </x:Arguments>
+    </NavigationPage>
     <local:Settings Title="Settings" Icon="Settings_32x32.png"/>
 
 

@@ -11,29 +11,28 @@ using LeagueStalker.ServerResponse.LOLAPI;
 using System.ComponentModel;
 using System.Threading;
 using System.Diagnostics;
+using LeagueStalker.CustomControls;
 
-namespace LeagueStalker.CustomControls
+namespace LeagueStalker.ViewModels.Extra
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CurrentMatch : ContentView, INotifyPropertyChanged
+    public class MatchViewModel : INotifyPropertyChanged
     {
         #region Properties
-        public static readonly BindableProperty CurrentGameProperty = BindableProperty.Create(
-            propertyName: "CurrentGame",
-            returnType: typeof(Game),
-            declaringType: typeof(CurrentMatch),
-            defaultValue: null);
-
+        private Game _currentGame;
         public Game CurrentGame
         {
-            get { return (Game)GetValue(CurrentGameProperty); }
+            get { return _currentGame; }
             set
             {
-                SetValue(CurrentGameProperty, value);
+                _currentGame = value;
                 OnPropertyChanged(nameof(CurrentGame));
             }
-
         }
+        public StackLayout TeamAStackLayout { get; set; }
+        public StackLayout TeamBStackLayout { get; set; }
+
+        public INavigation Navigation { get; set; }
+
         #endregion
 
         #region Interfaces
@@ -46,43 +45,20 @@ namespace LeagueStalker.CustomControls
         #endregion
 
         #region Constructor(s)
-        public CurrentMatch (Game g)
-		{
-			InitializeComponent ();
+        public MatchViewModel(Game game, StackLayout teamAStackLayout, StackLayout teamBStackLayout, INavigation nav)
+        {
+            this.CurrentGame = game;
+            this.TeamAStackLayout = teamAStackLayout;
+            this.TeamBStackLayout = teamBStackLayout;
+            this.Navigation = nav;
 
-            CurrentGame = g;
-            
-            //As long as our current game is not null
-            if(CurrentGame != null)
-            {
-                //new Thread(async () =>
-                //{
-                //    createViews();
-                //}).Start();
+            // As long as our current game is not null
+            if (CurrentGame != null)
                 Task.Run(async () => await createViews());
-            }
-
-            //foreach (var item in TeamA.Children)
-            //{
-            //    TapGestureRecognizer tp = new TapGestureRecognizer();
-            //    tp.Tapped += (sender, e) =>
-            //    {
-            //        Debug.WriteLine("Clicked");
-            //    };
-            //    item.GestureRecognizers.Add(tp);
-            //}
-            //foreach (var item in TeamB.Children)
-            //{
-            //    TapGestureRecognizer tp = new TapGestureRecognizer();
-            //    tp.Tapped += (sender, e) =>
-            //    {
-            //        Debug.WriteLine("Clicked");
-            //    };
-            //    item.GestureRecognizers.Add(tp);
-            //}
-
         }
         #endregion
+
+        #region Utility Methods
 
         private async Task createViews()
         {
@@ -101,7 +77,7 @@ namespace LeagueStalker.CustomControls
                 v.Spell2Icon = Globals.GetSpellIcon(participant.Spell2.key);
                 v.Keystone1Image = Globals.GetPerkIcon(participant.perks.perkIds[0]);
                 v.Keystone2Image = Globals.GetPerkStyleIcon(participant.perks.perkSubStyle);
-               
+
                 //Debug.WriteLine(participant.perks.perkIds[0]);
 
                 //for (int i = 0; i < participant.perks.perkIds.Count; i++)
@@ -113,11 +89,11 @@ namespace LeagueStalker.CustomControls
                 //Otherwise add it to the other group
                 if (participant.teamId == 100)
                 {
-                    TeamA.Children.Add(v);
+                    this.TeamAStackLayout.Children.Add(v);
                 }
                 else
                 {
-                    TeamB.Children.Add(v);
+                    this.TeamBStackLayout.Children.Add(v);
                 }
 
                 //Task.Run(async () => {
@@ -133,7 +109,8 @@ namespace LeagueStalker.CustomControls
                         {
                             //p.Navigation.PushModalAsync(new Views.Signup.Main());
                             //Application.Current.MainPage.Navigation.PushModalAsync(new Views.Signup.Main());
-                            Application.Current.MainPage = new Views.Extra.PlayerInfo(participant);
+                            //Application.Current.MainPage = new Views.Extra.PlayerInfo(participant);
+                            this.Navigation.PushAsync(new Views.Extra.PlayerInfo(participant));
                             //Globals.HomePage.Navigation.PushModalAsync(new Views.Extra.PlayerInfo(participant));
                             //this.Navigation.PushModalAsync(new Views.Extra.PlayerInfo(participant));
                         });
@@ -147,5 +124,7 @@ namespace LeagueStalker.CustomControls
                 v.GestureRecognizers.Add(tp);
             }
         }
+
+        #endregion
     }
 }
