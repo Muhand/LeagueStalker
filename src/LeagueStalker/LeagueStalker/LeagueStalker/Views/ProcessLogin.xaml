@@ -14,7 +14,7 @@
                        TextColor="{StaticResource DisabledColor}" FontAttributes="Italic"/>
 
                     <Label Text="Please wait..." VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontFamily="Sagoe UI"
-                       TextColor="{StaticResource DisabledColor}" FontAttributes="Italic" IsVisible="{Binding IsProcessing}}"/>
+                       TextColor="{StaticResource DisabledColor}" FontAttributes="Italic" IsVisible="{Binding IsProcessing}"/>
                 </StackLayout>
 
             </StackLayout>

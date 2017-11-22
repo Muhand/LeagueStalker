@@ -15,7 +15,7 @@ namespace LeagueStalker.Views.Dashboard
 		public History ()
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModels.Dashboard.HistoryViewModel();
+            BindingContext = new ViewModels.Dashboard.HistoryViewModel(ref PreviousMatchesStackLayout);
 		}
 	}
 }

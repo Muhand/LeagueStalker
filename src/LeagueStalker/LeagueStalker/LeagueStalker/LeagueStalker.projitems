@@ -31,6 +31,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\CircularProgressControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ExtendedImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\MatchView.xaml.cs">
+      <DependentUpon>MatchView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\PerkView.xaml.cs">
       <DependentUpon>PerkView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -41,6 +45,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Exist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\GameMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\GameStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\GameType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Lane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\LoadUser.cs" />
@@ -51,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Register.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ResendConfirmation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Win.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DatabaseManager.cs" />
@@ -64,6 +70,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\Login.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\BannedChampion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Champion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\DetailedMatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\DetailedParticipant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Mastery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Match.cs" />
@@ -71,10 +79,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Observers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Participant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\ParticipantIdentity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Perk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\PlayerLeague.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Rune.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Spell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Stats.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Team.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\LOLAPI\Timeline.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\PasswordReset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\Register.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServerResponse\ResendConfirmation.cs" />
@@ -217,6 +230,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\PerkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\MatchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

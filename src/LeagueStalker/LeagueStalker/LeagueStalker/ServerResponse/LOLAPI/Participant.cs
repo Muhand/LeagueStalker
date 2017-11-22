@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using LeagueStalker.Enums;
 using System.Linq;
 using LeagueStalker.Models;
+using System.Threading;
 
 namespace LeagueStalker.ServerResponse.LOLAPI
 {
@@ -35,21 +36,27 @@ namespace LeagueStalker.ServerResponse.LOLAPI
         
         public Participant(long summonerId, long championId, int spell1Id, int spell2Id, string summonerName)
         {
-            champion = Globals.GetChampionByID(championId);
-            Spell1 = Globals.GetSpellByID(spell1Id);
-            Spell2 = Globals.GetSpellByID(spell2Id);
-            //Get player's league
-            PlayerLeagues = Globals.GetPlayersLeagues(summonerId);
-
-            summonerInfo = Globals.GetSummonerInfo(summonerName);
-            PlayedRoles = new Dictionary<Role, int>();
-            PlayedLanes = new Dictionary<Lane, int>();
-
-            Task getMatches = Task.Run(() =>
+            new Thread(delegate ()
             {
+                champion = Globals.GetChampionByID(championId);
+                Spell1 = Globals.GetSpellByID(spell1Id);
+                Spell2 = Globals.GetSpellByID(spell2Id);
+                //Get player's league
+                PlayerLeagues = Globals.GetPlayersLeagues(summonerId);
+
+                summonerInfo = Globals.GetSummonerInfo(summonerName);
+                PlayedRoles = new Dictionary<Role, int>();
+                PlayedLanes = new Dictionary<Lane, int>();
+
                 matches = Globals.GetMatches(summonerInfo.accountId);
                 PopulateLanesAndRolesDictionaries();
-            });
+            }).Start();
+
+            //Task getMatches = Task.Run(() =>
+            //{
+            //    matches = Globals.GetMatches(summonerInfo.accountId);
+            //    PopulateLanesAndRolesDictionaries();
+            //});
         }
 
         private void PopulateLanesAndRolesDictionaries()

@@ -5,10 +5,11 @@
              BackgroundColor="{StaticResource MainBackgroundColor}"
              Padding="0,20,0,0">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView Margin="20,20,20,0">
+            <StackLayout x:Name="PreviousMatchesStackLayout"
+                     Orientation="Vertical" Spacing="5" 
+                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

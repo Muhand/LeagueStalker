@@ -54,13 +54,20 @@ namespace LeagueStalker.ViewModels.Extra
 
             // As long as our current game is not null
             if (CurrentGame != null)
-                Task.Run(async () => await createViews());
+            {
+                new Thread(delegate ()
+                {
+                    createViews();
+                }).Start();
+                //Task.Run(async () => await createViews());
+            }
         }
         #endregion
 
         #region Utility Methods
 
-        private async Task createViews()
+        //private async Task createViews()
+        private void createViews()
         {
 
             foreach (var participant in CurrentGame.participants)

@@ -18,6 +18,8 @@ namespace LeagueStalker
         {
             public static string Spell = "img/spell";
             public static string ProfileIcon = "img/profileicon";
+            public static string ChampionIcon = "img/champion";
+            public static string ItemIcon = "img/item";
         }
 
         public struct Stalker
@@ -42,6 +44,7 @@ namespace LeagueStalker
             public static string SpellLink = "https://na1.api.riotgames.com/lol/static-data/v3/summoner-spells";
             public static string LeaguesLink = "https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner";
             public static string MatchesLink = "https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account";
+            public static string DetailedMatchLink = "https://na1.api.riotgames.com/lol/match/v3/matches";
         }
 
         public struct Stalker
@@ -56,7 +59,7 @@ namespace LeagueStalker
 
     public static class Globals
     {
-        public const string RiotAPIKey = "RGAPI-ca8f5447-733a-4f3a-9983-515f05dc022a";
+        public const string RiotAPIKey = "RGAPI-5416ff8b-836c-48c8-a26d-8b5ab23b1423";
 
         #region Properties
         public static User CurrentUser
@@ -194,6 +197,21 @@ namespace LeagueStalker
 
         }
 
+        public static string GetChampionIcon(long champID)
+        {
+            //Get the champ name
+            Champion temp = GetChampionByID(champID);
+
+            //EX: http://ddragon.leagueoflegends.com/cdn/7.23.1/img/champion/Aatrox.png
+
+            //0 = link for the CDN
+            //1 = Game version
+            //2 = ChampionIcon extension
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.ChampionIcon,temp.name);
+
+            return link;
+        }
+
         public static Champion GetChampionByID(long id)
         {
             //EX: https://na1.api.riotgames.com/lol/static-data/v3/champions/19?locale=en_US&api_key=RGAPI-fc468df1-a885-44b5-90dd-8283b4c6e01f
@@ -287,6 +305,22 @@ namespace LeagueStalker
             //2 = Extension
             //3 = IconID
             string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.Spell, spellName);
+
+            return link;
+
+        }
+
+        public static string GetSpellIcon(int spellId)
+        {
+            Spell temp = GetSpellByID(spellId);
+
+            //EX: http://ddragon.leagueoflegends.com/cdn/6.24.1/img/spell/SummonerFlash.png
+
+            //0 = link for the icon
+            //1 = current League version
+            //2 = Extension
+            //3 = IconID
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.Spell, temp.key);
 
             return link;
 
@@ -421,6 +455,49 @@ namespace LeagueStalker
             }
 
             return res;
+        }
+
+        public static DetailedMatch GetDetailedMatch(long matchId)
+        {
+            //EX: https://na1.api.riotgames.com/lol/match/v3/matches/2650826704?api_key=
+
+            //0 = link for the match
+            //1 = account ID
+            //2 = API Key
+            string link = String.Format("{0}/{1}?api_key={2}", APILinks.LOL.DetailedMatchLink, matchId, RiotAPIKey);
+
+            //Start downloading the json data
+            WebClient w = new WebClient();
+
+            DetailedMatch res = new DetailedMatch();
+
+            //Try to get the data
+            try
+            {
+                //Download the data
+                string data = w.DownloadString(link);
+
+                //Construct a summoner object
+                res = JsonConvert.DeserializeObject<DetailedMatch>(data);
+            }
+            catch (WebException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return res;
+        }
+
+        public static string GetItemIcon(long iconId)
+        {
+            //EX: http://ddragon.leagueoflegends.com/cdn/7.23.1/img/item/3460.png
+
+            //0 = link for the CDN
+            //1 = Game version
+            //2 = ChampionIcon extension
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.ItemIcon, iconId);
+
+            return link;
         }
         #endregion
     }

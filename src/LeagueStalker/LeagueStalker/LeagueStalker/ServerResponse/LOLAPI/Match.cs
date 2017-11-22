@@ -11,7 +11,7 @@ namespace LeagueStalker.ServerResponse.LOLAPI
         public int champion { get; set; }
         public int queue { get; set; }
         public int season { get; set; }
-        public long MyProptimestamperty { get; set; }
+        public long timestamp { get; set; }
         public Role role { get; set; }
         public Lane lane { get; set; }
     }
