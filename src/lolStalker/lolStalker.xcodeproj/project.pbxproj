@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		B623712B20C08803007D5E4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623712A20C08803007D5E4C /* AppDelegate.swift */; };
 		B623712D20C08803007D5E4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623712C20C08803007D5E4C /* ViewController.swift */; };
-		B623713020C08803007D5E4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B623712E20C08803007D5E4C /* Main.storyboard */; };
 		B623713220C08804007D5E4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B623713120C08804007D5E4C /* Assets.xcassets */; };
 		B623713520C08804007D5E4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B623713320C08804007D5E4C /* LaunchScreen.storyboard */; };
+		B623713F20C08A91007D5E4C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623713E20C08A91007D5E4C /* UIColor.swift */; };
+		B623714420C092B4007D5E4C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714320C092B4007D5E4C /* UIView.swift */; };
+		B623714820C2397F007D5E4C /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714720C2397F007D5E4C /* LoginForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B623712720C08803007D5E4C /* lolStalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lolStalker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B623712A20C08803007D5E4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B623712C20C08803007D5E4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B623712F20C08803007D5E4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B623713120C08804007D5E4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B623713420C08804007D5E4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B623713620C08804007D5E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B623713E20C08A91007D5E4C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B623714320C092B4007D5E4C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		B623714720C2397F007D5E4C /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,48 @@
 		B623712920C08803007D5E4C /* lolStalker */ = {
 			isa = PBXGroup;
 			children = (
-				B623712A20C08803007D5E4C /* AppDelegate.swift */,
-				B623712C20C08803007D5E4C /* ViewController.swift */,
-				B623712E20C08803007D5E4C /* Main.storyboard */,
+				B623714620C092F9007D5E4C /* view controllers */,
+				B623714520C092ED007D5E4C /* misc */,
+				B623714020C08DAA007D5E4C /* custom controls */,
+				B623713C20C0895C007D5E4C /* extensions */,
 				B623713120C08804007D5E4C /* Assets.xcassets */,
 				B623713320C08804007D5E4C /* LaunchScreen.storyboard */,
 				B623713620C08804007D5E4C /* Info.plist */,
 			);
 			path = lolStalker;
+			sourceTree = "<group>";
+		};
+		B623713C20C0895C007D5E4C /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B623713E20C08A91007D5E4C /* UIColor.swift */,
+				B623714320C092B4007D5E4C /* UIView.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		B623714020C08DAA007D5E4C /* custom controls */ = {
+			isa = PBXGroup;
+			children = (
+				B623714720C2397F007D5E4C /* LoginForm.swift */,
+			);
+			path = "custom controls";
+			sourceTree = "<group>";
+		};
+		B623714520C092ED007D5E4C /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				B623712A20C08803007D5E4C /* AppDelegate.swift */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		B623714620C092F9007D5E4C /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B623712C20C08803007D5E4C /* ViewController.swift */,
+			);
+			path = "view controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +162,6 @@
 			files = (
 				B623713520C08804007D5E4C /* LaunchScreen.storyboard in Resources */,
 				B623713220C08804007D5E4C /* Assets.xcassets in Resources */,
-				B623713020C08803007D5E4C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B623714820C2397F007D5E4C /* LoginForm.swift in Sources */,
+				B623714420C092B4007D5E4C /* UIView.swift in Sources */,
 				B623712D20C08803007D5E4C /* ViewController.swift in Sources */,
+				B623713F20C08A91007D5E4C /* UIColor.swift in Sources */,
 				B623712B20C08803007D5E4C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +183,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B623712E20C08803007D5E4C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B623712F20C08803007D5E4C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B623713320C08804007D5E4C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,6 +315,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = lolStalker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q76DGNCRR;
 				INFOPLIST_FILE = lolStalker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
