@@ -33,11 +33,22 @@ class ViewController: UIViewController {
     
     func setupSubViews() {
         view.addSubview(loginView)
+        hideKeyboardWhenTappedAround()
 //        view.addSubview(logo)
 //        view.addSubview(emailField)
     }
     
     func setupConstraints() {
+        // 68.3658170915 came from the reference design on Adobe xd
+        // Took the height on Adobe XD and figured it's percentage to the adobe XD height
+        // and thats where 68.3658170915 came from
+        loginView.translatesAutoresizingMaskIntoConstraints = false
+        loginView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loginView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+//        loginView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.7).isActive = true
+        loginView.heightAnchor.constraint(equalToConstant: Helper.getHeightOf(xdHeight: 456, referenceHeight: nil, originalHeight: nil)).isActive = true
+        loginView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant:-(Helper.getWidthOf(xdWidth: 64, referenceWidth: nil, originalWidth: nil))).isActive = true
+        
 //                view.addConstraintsWithFormat(format: "H:|[v0]|", views: loginView)
 //                view.addConstraintsWithFormat(format: "V:|[v0]|", views: loginView)
 //        view.addConstraintsWithFormat(format: "H:|[v0]|", views: loginView)

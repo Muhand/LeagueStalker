@@ -14,6 +14,12 @@
 		B623713F20C08A91007D5E4C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623713E20C08A91007D5E4C /* UIColor.swift */; };
 		B623714420C092B4007D5E4C /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714320C092B4007D5E4C /* UIView.swift */; };
 		B623714820C2397F007D5E4C /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714720C2397F007D5E4C /* LoginForm.swift */; };
+		B623714A20C2FA2C007D5E4C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714920C2FA2C007D5E4C /* Helper.swift */; };
+		B623714C20C31003007D5E4C /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714B20C31003007D5E4C /* UIFont.swift */; };
+		B623714E20C31035007D5E4C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714D20C31035007D5E4C /* UILabel.swift */; };
+		B623715020C32B5F007D5E4C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714F20C32B5F007D5E4C /* UIViewController.swift */; };
+		B623715220C32C67007D5E4C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623715120C32C67007D5E4C /* TextField.swift */; };
+		B6BDBE4D20C336E80016BAB5 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BDBE4C20C336E80016BAB5 /* UIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,12 @@
 		B623713E20C08A91007D5E4C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B623714320C092B4007D5E4C /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B623714720C2397F007D5E4C /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
+		B623714920C2FA2C007D5E4C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B623714B20C31003007D5E4C /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		B623714D20C31035007D5E4C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		B623714F20C32B5F007D5E4C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		B623715120C32C67007D5E4C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		B6BDBE4C20C336E80016BAB5 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,10 @@
 			children = (
 				B623713E20C08A91007D5E4C /* UIColor.swift */,
 				B623714320C092B4007D5E4C /* UIView.swift */,
+				B623714B20C31003007D5E4C /* UIFont.swift */,
+				B623714D20C31035007D5E4C /* UILabel.swift */,
+				B623714F20C32B5F007D5E4C /* UIViewController.swift */,
+				B6BDBE4C20C336E80016BAB5 /* UIButton.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -82,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				B623714720C2397F007D5E4C /* LoginForm.swift */,
+				B623715120C32C67007D5E4C /* TextField.swift */,
 			);
 			path = "custom controls";
 			sourceTree = "<group>";
@@ -90,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				B623712A20C08803007D5E4C /* AppDelegate.swift */,
+				B623714920C2FA2C007D5E4C /* Helper.swift */,
 			);
 			path = misc;
 			sourceTree = "<group>";
@@ -174,9 +192,15 @@
 			files = (
 				B623714820C2397F007D5E4C /* LoginForm.swift in Sources */,
 				B623714420C092B4007D5E4C /* UIView.swift in Sources */,
+				B623715020C32B5F007D5E4C /* UIViewController.swift in Sources */,
+				B623715220C32C67007D5E4C /* TextField.swift in Sources */,
 				B623712D20C08803007D5E4C /* ViewController.swift in Sources */,
+				B623714C20C31003007D5E4C /* UIFont.swift in Sources */,
 				B623713F20C08A91007D5E4C /* UIColor.swift in Sources */,
 				B623712B20C08803007D5E4C /* AppDelegate.swift in Sources */,
+				B6BDBE4D20C336E80016BAB5 /* UIButton.swift in Sources */,
+				B623714E20C31035007D5E4C /* UILabel.swift in Sources */,
+				B623714A20C2FA2C007D5E4C /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
