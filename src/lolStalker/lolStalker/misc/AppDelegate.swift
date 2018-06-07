@@ -19,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let viewController = ViewController()
+//        let loginViewController = RegistrationViewController()
+        let loginViewController = LoginViewController()
 //        let navigationController = UINavigationController(rootViewController: viewController)
-        window?.rootViewController = viewController
+        window?.rootViewController = loginViewController
         
 //        UINavigationBar.appearance().barTintColor = UIColor(red: 51/255, green: 90/255, blue: 149/255, alpha: 1)
 //        UINavigationBar.appearance().titleTextAttributes = [ NSAttributedStringKey.foregroundColor: UIColor.white ]

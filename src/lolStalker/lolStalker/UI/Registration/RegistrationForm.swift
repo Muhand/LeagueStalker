@@ -1,19 +1,29 @@
 //
-//  LoginForm.swift
+//  RegisterationForm.swift
 //  lolStalker
 //
-//  Created by Muhand Jumah on 6/1/18.
+//  Created by Muhand Jumah on 6/5/18.
 //  Copyright © 2018 Muhand Jumah. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class LoginForm: UIView {
+protocol registrationFormDelegate {
+    func didPressSignup(form: RegistrationForm)
+    func didPressAlreadyHaveAccount(form: RegistrationForm)
+}
+
+class RegistrationForm: UIView {
     ////////////////////////////////////
-    //
+    //            Delegates
     ////////////////////////////////////
-    let forgotPasswordTapped = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordPressed))
+    var delegate: registrationFormDelegate?
+
+    ////////////////////////////////////
+    //            Gestures
+    ////////////////////////////////////
+    var alreadyHaveAccountTapped:UITapGestureRecognizer!
     
     ////////////////////////////////////
     //            Controls
@@ -45,6 +55,24 @@ class LoginForm: UIView {
         return field
     }()
     
+    let summonerNameField: TextField = {
+        let field = TextField()
+        field.backgroundColor = UIColor(hex: "#0D161F")
+        field.attributedPlaceholder = NSAttributedString(string: "Summoner Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(hex: "#95989A") ?? UIColor.lightGray])
+        field.layer.borderWidth = Helper.getWidthOf(xdWidth: 1.0, referenceWidth: nil, originalWidth: nil)
+        field.borderColor = UIColor(hex: "#95989A")!
+        field.borderColorOnSelected = UIColor(hex: "#CE9340")!
+        field.textColor = UIColor(hex: "#95989A")
+        field.font = UIFont.systemFont(ofSize: Helper.getFontOf(xdFont: 20, referenceHeight: nil, referenceWidth: nil))
+        
+        var topBottomPadding = Helper.getWidthOf(xdWidth: 13, referenceWidth: nil, originalWidth: nil)
+        var leftRightPadding = Helper.getWidthOf(xdWidth: 21, referenceWidth: nil, originalWidth: nil)
+        
+        field.padding = UIEdgeInsets(top: topBottomPadding, left: leftRightPadding, bottom: topBottomPadding, right: leftRightPadding)
+        
+        return field
+    }()
+    
     let passwordField: TextField = {
         let field = TextField()
         field.backgroundColor = UIColor(hex: "#0D161F")
@@ -55,26 +83,13 @@ class LoginForm: UIView {
         field.borderColorOnSelected = UIColor(hex: "#CE9340")!
         field.textColor = UIColor(hex: "#95989A")
         field.font = UIFont.systemFont(ofSize: Helper.getFontOf(xdFont: 20, referenceHeight: nil, referenceWidth: nil))
-
+        
         var topBottomPadding = Helper.getWidthOf(xdWidth: 13, referenceWidth: nil, originalWidth: nil)
         var leftRightPadding = Helper.getWidthOf(xdWidth: 21, referenceWidth: nil, originalWidth: nil)
         
         field.padding = UIEdgeInsets(top: topBottomPadding, left: leftRightPadding, bottom: topBottomPadding, right: leftRightPadding)
-
+        
         return field
-    }()
-    
-    let loginButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundColor(color: UIColor(hex: "#010A13")!, forState: .normal)
-        button.setBackgroundColor(color: UIColor(hex: "#CE9340")!, forState: .highlighted)
-        button.setTitleColor(UIColor(hex: "#CE9340"), for: .normal)
-        button.setTitleColor(UIColor(hex: "#010A13"), for: .highlighted)
-        button.setTitle("LOGIN", for: .normal)
-        button.layer.borderWidth = Helper.getWidthOf(xdWidth: 1.0, referenceWidth: nil, originalWidth: nil)
-        button.layer.borderColor = UIColor(hex: "#CE9340")?.cgColor
-        button.titleLabel?.font = UIFont.systemFont(ofSize: Helper.getFontOf(xdFont: 32, referenceHeight: nil, referenceWidth: nil))
-        return button
     }()
     
     let signupButton: UIButton = {
@@ -86,17 +101,17 @@ class LoginForm: UIView {
         button.setTitle("SIGN UP", for: .normal)
         button.layer.borderWidth = Helper.getWidthOf(xdWidth: 1.0, referenceWidth: nil, originalWidth: nil)
         button.layer.borderColor = UIColor(hex: "#CE9340")?.cgColor
-        
         button.titleLabel?.font = UIFont.systemFont(ofSize: Helper.getFontOf(xdFont: 32, referenceHeight: nil, referenceWidth: nil))
+        
+        button.addTarget(self, action: #selector(signupPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
-    let forgotPasswordLabel: UILabel = {
+    let alreadyHaveAccountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Forgot password?"
+        label.text = "Already have an account?"
         label.textColor = UIColor(hex: "#95989A")
         label.font = UIFont.systemFont(ofSize: Helper.getFontOf(xdFont: 20, referenceHeight: nil, referenceWidth: nil))
-        label.isUserInteractionEnabled = true
         return label
     }()
     
@@ -104,6 +119,7 @@ class LoginForm: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupGestures()
         setupView()
         setupConstraints()
     }
@@ -113,17 +129,18 @@ class LoginForm: UIView {
     }
     
     func setupView() {
-        forgotPasswordLabel.isUserInteractionEnabled = true
-        forgotPasswordLabel.addGestureRecognizer(forgotPasswordTapped)
-        // TODO: Delete the next line, it's helpful only in debug
-//        self.backgroundColor = UIColor.yellow
         
-//        self.frame.size = CGSize(width: UIScreen.main.bounds.width-32, height: ((UIScreen.main.bounds.height*68.3658170915)/100))
+    }
+    
+    func setupGestures() {
+        // Enable user interaction
+        alreadyHaveAccountLabel.isUserInteractionEnabled = true
         
-//        NSLayoutConstraint(item: form, attribute: .left, relatedBy: <#T##NSLayoutRelation#>, toItem: <#T##Any?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
-//        self.addConstraintsWithFormat(format: "H:|-32-[v0]-32-|", views: form)
-//        self.addConstraintsWithFormat(format: "V:|[v0]|", views: form)
-//        self.addConstraintsWithFormat(format: <#T##String#>, views: <#T##UIView...##UIView#>)
+        // Set gestures
+        self.alreadyHaveAccountTapped = UITapGestureRecognizer(target: self, action: #selector(alreadyHaveAccountPressed))
+        
+        // Add gestures
+        alreadyHaveAccountLabel.addGestureRecognizer(alreadyHaveAccountTapped)
     }
     
     func setupConstraints() {
@@ -133,18 +150,18 @@ class LoginForm: UIView {
         // MARK: Add subviews
         addSubview(self.logo)
         addSubview(emailField)
+        addSubview(summonerNameField)
         addSubview(passwordField)
-        addSubview(loginButton)
         addSubview(signupButton)
-        addSubview(forgotPasswordLabel)
+        addSubview(alreadyHaveAccountLabel)
         
         // MARK: Disable frames
         logo.translatesAutoresizingMaskIntoConstraints = false
         emailField.translatesAutoresizingMaskIntoConstraints = false
+        summonerNameField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.translatesAutoresizingMaskIntoConstraints = false
-        forgotPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
+        alreadyHaveAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // MARK: Constraints
         // LOGO
@@ -159,53 +176,34 @@ class LoginForm: UIView {
         emailField.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         emailField.heightAnchor.constraint(equalToConstant: defaultHeight).isActive = true
         
+        // SUMMONER NAME FIELD
+        summonerNameField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 26, referenceHeight: nil, originalHeight: nil)).isActive = true
+        summonerNameField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        summonerNameField.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        summonerNameField.heightAnchor.constraint(equalToConstant: defaultHeight).isActive = true
+        
         // PASSWORD FIELD
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 26, referenceHeight: nil, originalHeight: nil)).isActive = true
+        passwordField.topAnchor.constraint(equalTo: summonerNameField.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 26, referenceHeight: nil, originalHeight: nil)).isActive = true
         passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         passwordField.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         passwordField.heightAnchor.constraint(equalToConstant: defaultHeight).isActive = true
         
         // LOGIN BUTTON
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 58, referenceHeight: nil, originalHeight: nil)).isActive = true
-        loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        loginButton.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        loginButton.heightAnchor.constraint(equalToConstant: defaultHeight).isActive = true
-        
-        // SIGN UP BUTTON
-        signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 12, referenceHeight: nil, originalHeight: nil)).isActive = true
+        signupButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 58, referenceHeight: nil, originalHeight: nil)).isActive = true
         signupButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         signupButton.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         signupButton.heightAnchor.constraint(equalToConstant: defaultHeight).isActive = true
         
-        // FORGOT PASSWORD LABEL
-        forgotPasswordLabel.topAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 18, referenceHeight: nil, originalHeight: nil)).isActive = true
-        forgotPasswordLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        
-//        logo.heightAnchor.constraint(equalTo:heightAnchor, multiplier: 0.683658170915).isActive = true
-//        logo.widthAnchor.constraint(equalTo: widthAnchor, constant:-64).isActive = true
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.logo)
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.emailField)
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.passwordField)
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.loginButton)
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.signupButton)
-//        form.addConstraintsWithFormat(format: "H:|[v0]|", views: self.forgotPasswordLabel)
-//        form.addConstraintsWithFormat(format: "V:|-15-[v0]-26-[v2(\(rectangleHeight))]-59-[v3(\(rectangleHeight))]-12-[v4(\(rectangleHeight))]-18-[v5]", views: self.logo, self.passwordField, self.loginButton, self.signupButton, self.forgotPasswordLabel)
-        
-        
-//        logo.centerXAnchor.constraint(equalTo: form.centerXAnchor).isActive = true
-//        emailField.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 15).isActive = true
-//        emailField.centerXAnchor.constraint(equalTo: form.centerXAnchor).isActive = true
-//        layoutIfNeeded()
-//        emailField.widthAnchor.constraint(equalToConstant: form.frame.width).isActive = true
+        // ALREADY HAVE AN ACCOUNT LABEL
+        alreadyHaveAccountLabel.topAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: Helper.getHeightOf(xdHeight: 18, referenceHeight: nil, originalHeight: nil)).isActive = true
+        alreadyHaveAccountLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
     }
     
-//    @objc func forgotPasswordPressed(recognizer:UITapGestureRecognizer) {
-//        if let label = recognizer.view as? UILabel {
-//            print("TAPPPED")
-//        }
-//    }
-    @objc func forgotPasswordPressed() {
-        print("works")
+    @IBAction func signupPressed(sender: AnyObject) {
+        self.delegate?.didPressSignup(form: self)
     }
     
+    @objc func alreadyHaveAccountPressed() {
+        self.delegate?.didPressAlreadyHaveAccount(form: self)
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     ////////////////////////////////////
     //            Controls
     ////////////////////////////////////
@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     
     func setupView() {
         view.backgroundColor = UIColor(hex: "#010A13")
+        loginView.delegate = self
     }
     
     func setupSubViews() {
@@ -65,6 +66,26 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         view.setNeedsDisplay()
+    }
+}
+
+////////////////////////////////////
+//   Conform to login delegate
+////////////////////////////////////
+extension LoginViewController: loginFormDelegate {
+    func didPressLogin(form: LoginForm) {
+        let dashboardViewController = DashboardViewController()
+        UIApplication.shared.keyWindow?.rootViewController = dashboardViewController
+    }
+    
+    func didPressSignup(form: LoginForm) {
+        let registrationViewController = RegistrationViewController()
+//        registrationViewController.modalPresentationStyle = .overCurrentContext
+        self.present(registrationViewController, animated: true, completion: nil)
+    }
+    
+    func didPressForgotPassword(form: LoginForm) {
+        print("FORGOT PASSWORD")
     }
 }
 

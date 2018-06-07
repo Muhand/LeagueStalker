@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B623712B20C08803007D5E4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623712A20C08803007D5E4C /* AppDelegate.swift */; };
-		B623712D20C08803007D5E4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623712C20C08803007D5E4C /* ViewController.swift */; };
+		B623712D20C08803007D5E4C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623712C20C08803007D5E4C /* LoginViewController.swift */; };
 		B623713220C08804007D5E4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B623713120C08804007D5E4C /* Assets.xcassets */; };
 		B623713520C08804007D5E4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B623713320C08804007D5E4C /* LaunchScreen.storyboard */; };
 		B623713F20C08A91007D5E4C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623713E20C08A91007D5E4C /* UIColor.swift */; };
@@ -19,13 +19,19 @@
 		B623714E20C31035007D5E4C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714D20C31035007D5E4C /* UILabel.swift */; };
 		B623715020C32B5F007D5E4C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623714F20C32B5F007D5E4C /* UIViewController.swift */; };
 		B623715220C32C67007D5E4C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623715120C32C67007D5E4C /* TextField.swift */; };
+		B65E241D20C7183F00C1714D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E241C20C7183F00C1714D /* RegistrationViewController.swift */; };
+		B65E241F20C7184F00C1714D /* RegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E241E20C7184F00C1714D /* RegistrationForm.swift */; };
+		B65E242220C86DA100C1714D /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E242120C86DA100C1714D /* DashboardViewController.swift */; };
+		B65E242720C87E1700C1714D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E242620C87E1600C1714D /* SettingsViewController.swift */; };
+		B65E242C20C8835300C1714D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E242B20C8835300C1714D /* HistoryViewController.swift */; };
+		B65E242E20C8835C00C1714D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E242D20C8835C00C1714D /* HomeViewController.swift */; };
 		B6BDBE4D20C336E80016BAB5 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BDBE4C20C336E80016BAB5 /* UIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B623712720C08803007D5E4C /* lolStalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lolStalker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B623712A20C08803007D5E4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B623712C20C08803007D5E4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B623712C20C08803007D5E4C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B623713120C08804007D5E4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B623713420C08804007D5E4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B623713620C08804007D5E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +43,12 @@
 		B623714D20C31035007D5E4C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		B623714F20C32B5F007D5E4C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B623715120C32C67007D5E4C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		B65E241C20C7183F00C1714D /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		B65E241E20C7184F00C1714D /* RegistrationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationForm.swift; sourceTree = "<group>"; };
+		B65E242120C86DA100C1714D /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		B65E242620C87E1600C1714D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B65E242B20C8835300C1714D /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		B65E242D20C8835C00C1714D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B6BDBE4C20C336E80016BAB5 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +82,7 @@
 		B623712920C08803007D5E4C /* lolStalker */ = {
 			isa = PBXGroup;
 			children = (
-				B623714620C092F9007D5E4C /* view controllers */,
+				B65E241820C717C200C1714D /* UI */,
 				B623714520C092ED007D5E4C /* misc */,
 				B623714020C08DAA007D5E4C /* custom controls */,
 				B623713C20C0895C007D5E4C /* extensions */,
@@ -97,7 +109,6 @@
 		B623714020C08DAA007D5E4C /* custom controls */ = {
 			isa = PBXGroup;
 			children = (
-				B623714720C2397F007D5E4C /* LoginForm.swift */,
 				B623715120C32C67007D5E4C /* TextField.swift */,
 			);
 			path = "custom controls";
@@ -112,12 +123,75 @@
 			path = misc;
 			sourceTree = "<group>";
 		};
-		B623714620C092F9007D5E4C /* view controllers */ = {
+		B65E241820C717C200C1714D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B623712C20C08803007D5E4C /* ViewController.swift */,
+				B65E242020C86D9000C1714D /* Dashboard */,
+				B65E241A20C717CA00C1714D /* Registration */,
+				B65E241920C717C600C1714D /* Login */,
 			);
-			path = "view controllers";
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B65E241920C717C600C1714D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B623712C20C08803007D5E4C /* LoginViewController.swift */,
+				B623714720C2397F007D5E4C /* LoginForm.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B65E241A20C717CA00C1714D /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				B65E241C20C7183F00C1714D /* RegistrationViewController.swift */,
+				B65E241E20C7184F00C1714D /* RegistrationForm.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		B65E242020C86D9000C1714D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B65E242920C882DB00C1714D /* Tabs */,
+				B65E242120C86DA100C1714D /* DashboardViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		B65E242520C87E0C00C1714D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B65E242620C87E1600C1714D /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B65E242820C882A900C1714D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B65E242B20C8835300C1714D /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		B65E242920C882DB00C1714D /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				B65E242A20C8834900C1714D /* Home */,
+				B65E242820C882A900C1714D /* History */,
+				B65E242520C87E0C00C1714D /* Settings */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		B65E242A20C8834900C1714D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B65E242D20C8835C00C1714D /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,14 +265,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B623714820C2397F007D5E4C /* LoginForm.swift in Sources */,
+				B65E241D20C7183F00C1714D /* RegistrationViewController.swift in Sources */,
 				B623714420C092B4007D5E4C /* UIView.swift in Sources */,
 				B623715020C32B5F007D5E4C /* UIViewController.swift in Sources */,
 				B623715220C32C67007D5E4C /* TextField.swift in Sources */,
-				B623712D20C08803007D5E4C /* ViewController.swift in Sources */,
+				B65E242720C87E1700C1714D /* SettingsViewController.swift in Sources */,
+				B65E242E20C8835C00C1714D /* HomeViewController.swift in Sources */,
+				B65E242220C86DA100C1714D /* DashboardViewController.swift in Sources */,
+				B623712D20C08803007D5E4C /* LoginViewController.swift in Sources */,
 				B623714C20C31003007D5E4C /* UIFont.swift in Sources */,
 				B623713F20C08A91007D5E4C /* UIColor.swift in Sources */,
+				B65E242C20C8835300C1714D /* HistoryViewController.swift in Sources */,
 				B623712B20C08803007D5E4C /* AppDelegate.swift in Sources */,
 				B6BDBE4D20C336E80016BAB5 /* UIButton.swift in Sources */,
+				B65E241F20C7184F00C1714D /* RegistrationForm.swift in Sources */,
 				B623714E20C31035007D5E4C /* UILabel.swift in Sources */,
 				B623714A20C2FA2C007D5E4C /* Helper.swift in Sources */,
 			);
