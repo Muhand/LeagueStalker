@@ -28,7 +28,8 @@ class LoginViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = UIColor(hex: "#010A13")
+//        view.backgroundColor = UIColor(hex: "#010A13")
+        view.backgroundColor = currentTheme.mainColor
         loginView.delegate = self
     }
     

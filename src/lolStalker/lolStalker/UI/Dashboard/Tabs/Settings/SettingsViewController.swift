@@ -13,6 +13,12 @@ class SettingsViewController: UIViewController {
     ////////////////////////////////////
     //            Controls
     ////////////////////////////////////
+    let logoutBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("Logout", for: .normal)
+        button.addTarget(self, action: #selector(logoutPressed), for: .touchUpInside)
+        return button
+    }()
     
     ////////// END OF CONTROLS /////////
     override func viewDidLoad() {
@@ -30,11 +36,14 @@ class SettingsViewController: UIViewController {
     }
     
     func setupSubViews() {
-        
+        view.addSubview(logoutBtn)
     }
     
     func setupConstraints() {
-
+        logoutBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        logoutBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoutBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     func setupMargins() {
@@ -44,5 +53,10 @@ class SettingsViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         view.setNeedsDisplay()
+    }
+    
+    @IBAction func logoutPressed(sender: AnyObject) {
+        let loginViewController = LoginViewController()
+        UIApplication.shared.keyWindow?.rootViewController = loginViewController
     }
 }
