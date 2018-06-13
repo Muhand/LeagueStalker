@@ -39,6 +39,7 @@
 		B69726BA20CCD24A0013AB1C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726B920CCD24A0013AB1C /* Theme.swift */; };
 		B69726BC20CCD34C0013AB1C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726BB20CCD34C0013AB1C /* Globals.swift */; };
 		B69726BE20CCD6020013AB1C /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726BD20CCD6020013AB1C /* LightTheme.swift */; };
+		B69726C020CDEF0E0013AB1C /* PlayerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726BF20CDEF0E0013AB1C /* PlayerSection.swift */; };
 		B6BDBE4D20C336E80016BAB5 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BDBE4C20C336E80016BAB5 /* UIButton.swift */; };
 		B6E3203720CB37BF00FD98FA /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E3203620CB37BF00FD98FA /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		B69726B920CCD24A0013AB1C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B69726BB20CCD34C0013AB1C /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		B69726BD20CCD6020013AB1C /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
+		B69726BF20CDEF0E0013AB1C /* PlayerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSection.swift; sourceTree = "<group>"; };
 		B6BDBE4C20C336E80016BAB5 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		B6E3203620CB37BF00FD98FA /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B623715120C32C67007D5E4C /* TextField.swift */,
+				B69726BF20CDEF0E0013AB1C /* PlayerSection.swift */,
 			);
 			path = "custom controls";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				B623714420C092B4007D5E4C /* UIView.swift in Sources */,
 				B65E243C20CAD07100C1714D /* PlayerViewCell.swift in Sources */,
 				B65E243F20CAD0E300C1714D /* Player.swift in Sources */,
+				B69726C020CDEF0E0013AB1C /* PlayerSection.swift in Sources */,
 				B65E244820CADFE700C1714D /* UITableView.swift in Sources */,
 				B623715020C32B5F007D5E4C /* UIViewController.swift in Sources */,
 				B65E243320C96FD100C1714D /* GameView.swift in Sources */,

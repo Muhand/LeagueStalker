@@ -13,6 +13,12 @@ class PlayerViewController: UIViewController {
     ////////////////////////////////////
     //            Controls
     ////////////////////////////////////
+    let parentScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.backgroundColor = .red
+        return view
+    }()
+    
     let playerView: PlayerView = {
         let view = PlayerView()
         
@@ -54,12 +60,23 @@ class PlayerViewController: UIViewController {
     
     func setupSubViews() {
         view.addSubview(playerView)
+//        parentScrollView.addSubview(playerView)
         
         playerView.delegate = self
     }
     
     func setupConstraints() {
+        parentScrollView.translatesAutoresizingMaskIntoConstraints = false
         playerView.translatesAutoresizingMaskIntoConstraints = false
+        
+//        view.addConstraintsWithFormat(format: "V:|[v0]|", views: parentScrollView)
+//        view.addConstraintsWithFormat(format: "H:|[v0]|", views: parentScrollView)
+        
+//        parentScrollView.addConstraintsWithFormat(format: "H:|-\(Helper.getWidthOf(xdWidth: 12, referenceWidth: nil, originalWidth: nil))-[v0]-\(Helper.getWidthOf(xdWidth: 12, referenceWidth: nil, originalWidth: nil))-|", views: playerView)
+//        parentScrollView.addConstraintsWithFormat(format: "H:|[v0]|", views: playerView)
+//        parentScrollView.addConstraintsWithFormat(format: "V:|[v0]|", views: playerView)
+        
+//        parentScrollView.addConstraintsWithFormat(format: "V:|-\(UIApplication.shared.statusBarFrame.height)-[v0]|", views: playerView)
         
         playerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
