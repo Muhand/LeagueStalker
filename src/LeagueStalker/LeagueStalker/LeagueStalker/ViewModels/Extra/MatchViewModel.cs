@@ -28,6 +28,19 @@ namespace LeagueStalker.ViewModels.Extra
                 OnPropertyChanged(nameof(CurrentGame));
             }
         }
+
+        private List<Participant> _currentParticipants;
+        public List<Participant> CurrentParticipants
+        {
+            get { return _currentParticipants; }
+            set
+            {
+                _currentParticipants = value;
+                OnPropertyChanged(nameof(CurrentParticipants));
+            }
+        }
+
+
         public StackLayout TeamAStackLayout { get; set; }
         public StackLayout TeamBStackLayout { get; set; }
 
@@ -47,30 +60,97 @@ namespace LeagueStalker.ViewModels.Extra
         #region Constructor(s)
         public MatchViewModel(Game game, StackLayout teamAStackLayout, StackLayout teamBStackLayout, INavigation nav)
         {
-            this.CurrentGame = game;
+            //this.CurrentGame = game;
+            this.CurrentParticipants = game.participants;
             this.TeamAStackLayout = teamAStackLayout;
             this.TeamBStackLayout = teamBStackLayout;
             this.Navigation = nav;
 
             // As long as our current game is not null
-            if (CurrentGame != null)
+            if (CurrentParticipants != null)
             {
-                new Thread(delegate ()
-                {
-                    createViews();
-                }).Start();
-                //Task.Run(async () => await createViews());
+                //new Thread(delegate ()
+                //{
+                //    createViews();
+                //}).Start();
+                Task.Run(async () => await createViews());
             }
+            //init();
         }
+
+        public MatchViewModel(Match match, StackLayout teamAStackLayout, StackLayout teamBStackLayout, INavigation nav)
+        {
+            ////this.CurrentGame = game;
+            //var temp = Globals.GetDetailedMatch(match.gameId);
+
+            //////Clear the current list
+            ////if(this.CurrentParticipants != null && this.CurrentParticipants.Count > 0)
+            ////    this.CurrentParticipants.Clear();
+
+            //this.CurrentParticipants = new List<Participant>();
+
+            ////Create the players list
+            //foreach (var participant in temp.participants)
+            //{
+            //    //Find the current player to get stats from it
+            //    //Player tempPlayer = temp.participantIdentities.Find(x => participant.participantId).player;
+            //    Player tempPlayer = temp.participantIdentities.Find(x => x.participantId == participant.participantId).player;
+
+            //    //Perks placeholder
+            //    Perk tempPerks = new Perk();
+
+            //    //Generate perks
+            //    tempPerks.perkStyle = participant.stats.perkPrimaryStyle;
+            //    tempPerks.perkSubStyle = participant.stats.perkSubStyle;
+            //    tempPerks.perkIds = new List<long>();
+            //    tempPerks.perkIds.Add(participant.stats.perk0);
+            //    tempPerks.perkIds.Add(participant.stats.perk1);
+            //    tempPerks.perkIds.Add(participant.stats.perk2);
+            //    tempPerks.perkIds.Add(participant.stats.perk3);
+            //    tempPerks.perkIds.Add(participant.stats.perk4);
+            //    tempPerks.perkIds.Add(participant.stats.perk5);
+
+            //    //Our participant to be added to the currentParticipants list
+            //    Participant tempPart = new Participant(tempPlayer.summonerId, participant.championId,
+            //                                            participant.spell1Id, participant.spell2Id,
+            //                                            tempPlayer.summonerName);
+
+            //    //Generate participant
+            //    tempPart.teamId = participant.teamId;
+            //    tempPart.profileIconId = tempPlayer.profileIcon;
+            //    tempPart.bot = false;
+            //    tempPart.gameCustomizationObjects = null;
+            //    tempPart.perks = tempPerks;
+
+
+            //    //Add our tempPart to the list
+            //    this.CurrentParticipants.Add(tempPart);
+            //}
+            
+            //this.TeamAStackLayout = teamAStackLayout;
+            //this.TeamBStackLayout = teamBStackLayout;
+            //this.Navigation = nav;
+
+            //// As long as our current game is not null
+            //if (CurrentParticipants != null)
+            //{
+            //    //new Thread(delegate ()
+            //    //{
+            //    //    createViews();
+            //    //}).Start();
+            //    Task.Run(async () => await createViews());
+            //}
+        }
+
         #endregion
 
         #region Utility Methods
 
-        //private async Task createViews()
-        private void createViews()
+        private async Task createViews()
+        //private void createViews()
         {
 
-            foreach (var participant in CurrentGame.participants)
+            foreach (var participant in this.CurrentParticipants)
             {
 
                 //Create a new playerview
@@ -102,6 +182,8 @@ namespace LeagueStalker.ViewModels.Extra
                 {
                     this.TeamBStackLayout.Children.Add(v);
                 }
+
+                Debug.WriteLine("HERE");
 
                 //Task.Run(async () => {
 

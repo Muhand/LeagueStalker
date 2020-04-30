@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeagueStalker.Views.Dashboard.ProcessMatchPreview"
+             xmlns:CustomConverters="clr-namespace:LeagueStalker.Converters"
+             BackgroundColor="{StaticResource MainBackgroundColor}"
+             Padding="0,40,0,0"
+             NavigationPage.HasBackButton="True">
+    
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="32,0,32,40">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator IsRunning="{Binding IsProcessing}" Color="{StaticResource ThemeColor}"/>
+
+                <StackLayout Spacing="5">
+                    <Label Text="{Binding NotificationMessage}"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                           FontSize="20" FontFamily="Sagoe UI"
+                           TextColor="{StaticResource DisabledColor}" FontAttributes="Italic"/>
+
+                    <Label Text="Please wait..." VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="20" FontFamily="Sagoe UI"
+                       TextColor="{StaticResource DisabledColor}" FontAttributes="Italic" IsVisible="{Binding IsProcessing}"/>
+                </StackLayout>
+
+            </StackLayout>
+
+            <ListView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListItems}"
+                      IsVisible="{Binding IsProcessing, Converter={CustomConverters:InverseBoolConverter}}">
+                
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

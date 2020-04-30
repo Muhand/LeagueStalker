@@ -94,6 +94,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HistoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\ProcessMatchPreviewViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Dashboard\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extra\MatchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extra\PlayerInfoViewModel.cs" />
@@ -112,6 +113,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\ProcessMatchPreview.xaml.cs">
+      <DependentUpon>ProcessMatchPreview.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Dashboard\Settings.xaml.cs">
@@ -236,6 +241,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomControls\MatchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Dashboard\ProcessMatchPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeagueStalker.ServerResponse.LOLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace LeagueStalker.Views.Dashboard
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class History : ContentPage
+	public partial class ProcessMatchPreview : ContentPage
 	{
-		public History ()
+		public ProcessMatchPreview (Match match)
 		{
 			InitializeComponent ();
-            BindingContext = new ViewModels.Dashboard.HistoryViewModel(ref PreviousMatchesStackLayout, this.Navigation);
+            BindingContext = new ViewModels.Dashboard.ProcessMatchPreviewViewModel(match);
 		}
 	}
 }
