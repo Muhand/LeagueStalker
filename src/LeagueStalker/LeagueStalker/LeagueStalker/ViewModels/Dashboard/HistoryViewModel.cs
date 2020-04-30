@@ -27,7 +27,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 OnPropertyChanged(nameof(PreviousMatchesStackLayout));
             }
         }
-
+        public INavigation Navigation { get; set; }
         #endregion
 
         #region Commands
@@ -54,8 +54,10 @@ namespace LeagueStalker.ViewModels.Dashboard
         #endregion
 
         #region Constructor(s)
-        public HistoryViewModel(ref StackLayout previousMatchesStackLayout)
+        public HistoryViewModel(ref StackLayout previousMatchesStackLayout, INavigation nav)
         {
+            this.Navigation = nav;
+
             this.PreviousMatchesStackLayout = previousMatchesStackLayout;
 
             new Thread(delegate ()
@@ -78,7 +80,7 @@ namespace LeagueStalker.ViewModels.Dashboard
         {
             //Get the most 20 recent matches
             Matches matches = Globals.GetMatches(Globals.CurrentUser.UserInfo.accountId, 0, 20);
-           
+
             //Loop through each match
             foreach (var match in matches.matches)
             {
@@ -96,7 +98,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 //Find if the participant ID for the current match
                 foreach (var participantIdentity in temp.participantIdentities)
                 {
-                    if(participantIdentity.player.summonerName == Globals.CurrentUser.Summonername)
+                    if (participantIdentity.player.summonerName == Globals.CurrentUser.Summonername)
                     {
                         currentParticipantId = participantIdentity.participantId;
                         currentParticipantIdentity = participantIdentity;
@@ -107,7 +109,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 //Find the player's team
                 foreach (var participant in temp.participants)
                 {
-                    if(participant.participantId == currentParticipantId)
+                    if (participant.participantId == currentParticipantId)
                     {
                         currentParticipantTeamId = participant.teamId;
                         currentParticipant = participant;
@@ -118,7 +120,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 //Find if the player have won or lost the game
                 foreach (var team in temp.teams)
                 {
-                    if(team.teamId == currentParticipantTeamId)
+                    if (team.teamId == currentParticipantTeamId)
                     {
                         switch (team.win)
                         {
@@ -140,7 +142,7 @@ namespace LeagueStalker.ViewModels.Dashboard
                 //Get KDA for the player
                 double kda;
                 var participantStats = temp.participants[Convert.ToInt32(currentParticipantId) - 1].stats;
-                kda = (participantStats.kills + participantStats.assists+0.0) / (participantStats.deaths+0.0);
+                kda = (participantStats.kills + participantStats.assists + 0.0) / (participantStats.deaths + 0.0);
 
                 MatchView v = new MatchView();
                 v.ChampionsIcon = Globals.GetChampionIcon(match.champion);
@@ -161,12 +163,31 @@ namespace LeagueStalker.ViewModels.Dashboard
                 v.Spell2Icon = Globals.GetSpellIcon(currentParticipant.spell2Id);
 
 
+                //Make it tabable
+                TapGestureRecognizer tp = new TapGestureRecognizer();
+                tp.Tapped += (sender, e) =>
+                {
+                    //Debug.WriteLine("CLICKED: "+participant.summonerName);
+                    try
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            //this.Navigation.PushAsync(new Views.Extra.Match(match, this.Navigation));
+                            this.Navigation.PushAsync(new Views.Dashboard.ProcessMatchPreview(match));
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                };
+                v.GestureRecognizers.Add(tp);
+                
                 //Add the match to the list
                 //PreviousMatchesStackLayout.Children.Add(v);
                 addNewChild(v);
             }
         }
-
         #endregion
     }
 }

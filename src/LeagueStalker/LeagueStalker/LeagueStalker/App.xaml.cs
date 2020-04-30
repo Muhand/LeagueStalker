@@ -19,6 +19,7 @@ namespace LeagueStalker
         public App()
         {
             InitializeComponent();
+            InitializeGlobalVariables();
 
             //AppCenter.Start("ios=05489b0d-2d51-4b0c-8b7b-38fbd42992b9;" + "uwp={Your UWP App secret here};" +
             //       "android={Your Android App secret here}",
@@ -35,6 +36,15 @@ namespace LeagueStalker
             //MainPage = new NavigationPage(new LeagueStalker.MainPage());
             MainPage = new LeagueStalker.MainPage();
 
+        }
+
+        private void InitializeGlobalVariables()
+        {
+            Globals.CurrentGame = new ServerResponse.LOLAPI.Game();
+            Globals.CurrentLeagueVersion = "";
+            Globals.CurrentUser = new Models.User();
+            Globals.VisitedMatches = new Dictionary<long, ServerResponse.LOLAPI.Match>();
+            Globals.VisitedParticipantsPerMatch = new Dictionary<ServerResponse.LOLAPI.Match, List<ServerResponse.LOLAPI.Participant>>();
         }
 
         protected override void OnStart ()

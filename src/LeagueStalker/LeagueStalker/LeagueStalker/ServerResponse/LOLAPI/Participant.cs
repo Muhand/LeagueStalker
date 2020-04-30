@@ -36,8 +36,8 @@ namespace LeagueStalker.ServerResponse.LOLAPI
         
         public Participant(long summonerId, long championId, int spell1Id, int spell2Id, string summonerName)
         {
-            new Thread(delegate ()
-            {
+            //new Thread(delegate ()
+            //{
                 champion = Globals.GetChampionByID(championId);
                 Spell1 = Globals.GetSpellByID(spell1Id);
                 Spell2 = Globals.GetSpellByID(spell2Id);
@@ -48,15 +48,15 @@ namespace LeagueStalker.ServerResponse.LOLAPI
                 PlayedRoles = new Dictionary<Role, int>();
                 PlayedLanes = new Dictionary<Lane, int>();
 
+                //matches = Globals.GetMatches(summonerInfo.accountId);
+                //PopulateLanesAndRolesDictionaries();
+            //}).Start();
+
+            Task getMatches = Task.Run(() =>
+            {
                 matches = Globals.GetMatches(summonerInfo.accountId);
                 PopulateLanesAndRolesDictionaries();
-            }).Start();
-
-            //Task getMatches = Task.Run(() =>
-            //{
-            //    matches = Globals.GetMatches(summonerInfo.accountId);
-            //    PopulateLanesAndRolesDictionaries();
-            //});
+            });
         }
 
         private void PopulateLanesAndRolesDictionaries()

@@ -12,6 +12,7 @@ namespace LeagueStalker.Enums
         TUTORIAL,
         ONEFORALL,
         FIRSTBLOOD,
-        ASCENSION
+        ASCENSION,
+        PROJECT
     }
 }

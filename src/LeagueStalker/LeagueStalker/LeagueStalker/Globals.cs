@@ -59,7 +59,7 @@ namespace LeagueStalker
 
     public static class Globals
     {
-        public const string RiotAPIKey = "RGAPI-5416ff8b-836c-48c8-a26d-8b5ab23b1423";
+        public const string RiotAPIKey = "RGAPI-a780b818-6a1c-44d7-82a5-294ae0aaaee9";
 
         #region Properties
         public static User CurrentUser
@@ -79,8 +79,21 @@ namespace LeagueStalker
             get;
             set;
         }
-        
+
+        public static Dictionary<long, Match> VisitedMatches
+        {
+            get;
+            set;
+        }
+
+        public static Dictionary<Match, List<Participant>> VisitedParticipantsPerMatch
+        {
+            get;
+            set;
+        }
+
         #endregion
+
 
         #region Utility Methods
 
@@ -130,7 +143,7 @@ namespace LeagueStalker
                 //Construct the data
                 JArray versions = JsonConvert.DeserializeObject<JArray>(data);
 
-                return versions.First().ToString();
+                return versions.Last().ToString();
             }
             catch (Exception)
             {
@@ -199,15 +212,19 @@ namespace LeagueStalker
 
         public static string GetChampionIcon(long champID)
         {
+
             //Get the champ name
             Champion temp = GetChampionByID(champID);
 
             //EX: http://ddragon.leagueoflegends.com/cdn/7.23.1/img/champion/Aatrox.png
 
+            //Remove spaces so we wont get any errors with names that has spaces
+            temp.name = temp.name.Replace(" ", "");
+
             //0 = link for the CDN
             //1 = Game version
             //2 = ChampionIcon extension
-            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.ChampionIcon,temp.name);
+            string link = String.Format("{0}/{1}/{2}/{3}.png", APILinks.LOL.CDNLink, CurrentLeagueVersion, CDNExtensions.LOL.ChampionIcon,temp.key);
 
             return link;
         }

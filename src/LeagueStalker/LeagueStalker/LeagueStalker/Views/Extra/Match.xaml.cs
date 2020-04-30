@@ -18,5 +18,11 @@ namespace LeagueStalker.Views.Extra
 			InitializeComponent ();
             BindingContext = new ViewModels.Extra.MatchViewModel(game, TeamA,TeamB, nav);
 		}
-	}
+
+        public Match(ServerResponse.LOLAPI.Match match, INavigation nav)
+        {
+            InitializeComponent();
+            BindingContext = new ViewModels.Extra.MatchViewModel(match, TeamA, TeamB, nav);
+        }
+    }
 }
